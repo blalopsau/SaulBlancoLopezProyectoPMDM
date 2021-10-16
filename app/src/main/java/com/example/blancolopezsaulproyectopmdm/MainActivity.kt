@@ -1,5 +1,6 @@
 package com.example.blancolopezsaulproyectopmdm
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityMainBinding
@@ -16,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btCrearCuenta.setOnClickListener {
-
+            val intent=Intent(this,CrearcuentaActivity::class.java)
+            startActivity(intent)
         }
     }
 }

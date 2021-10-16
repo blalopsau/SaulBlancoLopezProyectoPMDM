@@ -12,41 +12,22 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/_80b57fcd9996e24bc43c529" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilUsuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="50dp"
-        app:boxStrokeColor="@color/colorRojoNetflix"
-        app:hintTextColor="@color/colorRojoNetflix"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Usuario"
-            android:textCursorDrawable="@color/colorRojoNetflix"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        app:srcCompat="@drawable/logo_netflix" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilContrasenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="50dp"
         app:boxStrokeColor="@color/colorRojoNetflix"
         app:hintTextColor="@color/colorRojoNetflix"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilUsuario"
         app:passwordToggleEnabled="true">
@@ -57,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contraseña"
-            android:textCursorDrawable="@color/colorRojoNetflix"/>
+            android:textCursorDrawable="@color/colorRojoNetflix" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,6 +52,7 @@
         android:backgroundTint="@color/colorRojoNetflix"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilContrasenha" />
 
@@ -82,8 +64,31 @@
         android:text="crear cuenta"
         android:textColor="?android:attr/textColorHint"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btLogin"
         app:rippleColor="@android:color/transparent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="50dp"
+        app:boxStrokeColor="@color/colorRojoNetflix"
+        app:hintTextColor="@color/colorRojoNetflix"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Usuario"
+            android:textCursorDrawable="@color/colorRojoNetflix" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
