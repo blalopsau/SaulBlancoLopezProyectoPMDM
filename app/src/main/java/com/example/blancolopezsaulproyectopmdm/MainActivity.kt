@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding.btCrearCuenta.setOnClickListener {
             val intent=Intent(this,CrearcuentaActivity::class.java)
             startActivity(intent)
+
         }
     }
 }
