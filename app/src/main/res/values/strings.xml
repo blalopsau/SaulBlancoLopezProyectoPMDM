@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BlancoLopezSaulProyectoPMDM</string>
+    <string name="terminos">Acepto los <a href="https://www.edu.xunta.gal/centros/iesmurallaromana/">Términos y Condiciones</a></string>
 </resources>
