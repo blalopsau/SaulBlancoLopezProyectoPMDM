@@ -13,13 +13,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btCrearCuenta.setOnClickListener {
-            val intent=Intent(this,CrearcuentaActivity::class.java)
+        binding.btCrearCuenta.setOnClickListener {//Cuando se pulsa el boton crear se va a la pantalla CrearcuentaActivity
+            val intent = Intent(this, CrearcuentaActivity::class.java)
             startActivity(intent)
-
         }
     }
 }
