@@ -20,12 +20,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilContrasenha"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="50dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         app:boxStrokeColor="@color/colorRojoNetflix"
         app:hintTextColor="@color/colorRojoNetflix"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,6 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-
             android:id="@+id/tietContrasenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,12 +74,12 @@
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/tilUsuario"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="50dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         app:boxStrokeColor="@color/colorRojoNetflix"
         app:hintTextColor="@color/colorRojoNetflix"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,10 +90,12 @@
         <com.google.android.material.textfield.TextInputEditText
 
             android:id="@+id/tietUsuario"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Usuario"
-            android:textCursorDrawable="@color/colorRojoNetflix" />
+            android:textCursorDrawable="@color/colorRojoNetflix"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

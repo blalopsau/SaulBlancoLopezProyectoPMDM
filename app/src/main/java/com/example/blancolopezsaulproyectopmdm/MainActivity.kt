@@ -32,13 +32,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btLogin.setOnClickListener {
-            val nombre =pref.recuperarDatos("nombre")
-            val contraseña =pref.recuperarDatos("contraseña")
+            val nombre = pref.recuperarDatos("nombre")
+            val contraseña = pref.recuperarDatos("contraseña")
 
 
-           if (!nombre.equals(binding.tietUsuario.text.toString()) || !contraseña.equals(binding.tietContrasenha.text.toString())){
-                Toast.makeText(this,"El usuario o la contraseña no existen",Toast.LENGTH_SHORT).show()
+            if (!nombre.equals(binding.tietUsuario.text.toString())) {
+                binding.tietUsuario.setError("El usuario no existe")
+            } else if (!contraseña.equals(binding.tietContrasenha.text.toString())) {
+                binding.tietContrasenha.setError("La contraseña no es correcta")
+            } else {
+                val intent = Intent(this, PeliculasActivity::class.java)
+                startActivity(intent)
             }
+
         }
     }
 

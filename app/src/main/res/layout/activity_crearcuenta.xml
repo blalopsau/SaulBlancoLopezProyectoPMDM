@@ -22,6 +22,7 @@
         app:srcCompat="@drawable/icono_netflix" />
 
         <com.google.android.material.textfield.TextInputLayout
+
             android:id="@+id/tilNombreUsuario"
             android:layout_width="325dp"
             android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivLogo2">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:id="@+id/tietNombreUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,6 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tilNombreUsuario">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:id="@+id/tietApellidos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,6 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tilApellidos">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:id="@+id/tietEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,6 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:id="@+id/tietContraseña"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,6 +115,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tilContraseña">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:id="@+id/tietRepetirContraseña"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

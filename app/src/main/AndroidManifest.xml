@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.blancolopezsaulproyectopmdm">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlancoLopezSaulProyectoPMDM">
         <activity
+            android:name=".PeliculasActivity"
+            android:exported="true"
+            android:label="@string/title_activity_peliculas"
+            android:theme="@style/Theme.BlancoLopezSaulProyectoPMDM.NoActionBar" />
+        <activity
             android:name=".CrearcuentaActivity"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
