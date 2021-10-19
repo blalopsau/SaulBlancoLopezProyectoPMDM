@@ -1,16 +1,13 @@
-package com.example.blancolopezsaulproyectopmdm
+package com.example.blancolopezsaulproyectopmdm.activities
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityCrearcuentaBinding
 import android.content.Intent
-import android.content.IntentFilter
-import android.content.SharedPreferences
-import android.net.Uri
 import android.util.Patterns
 import android.widget.Toast
-import com.example.blancolopezsaulproyectopmdm.MainActivity.Companion.pref
+import com.example.blancolopezsaulproyectopmdm.R
+import com.example.blancolopezsaulproyectopmdm.activities.MainActivity.Companion.pref
 import java.util.regex.Pattern
 
 
