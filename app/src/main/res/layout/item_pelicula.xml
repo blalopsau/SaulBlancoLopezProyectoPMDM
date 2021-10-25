@@ -81,12 +81,14 @@
         android:id="@+id/tvNota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
         android:layout_marginEnd="20dp"
         android:textColor="@color/colorRojoNetflix"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivCaratula"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        tools:text="6.9" />
+        tools:text="9.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
