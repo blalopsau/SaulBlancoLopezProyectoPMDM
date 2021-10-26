@@ -4,11 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.databinding.ItemPeliculaBinding
-import com.example.blancolopezsaulproyectopmdm.entities.Pelicula
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 private lateinit var binding: ItemPeliculaBinding
 
 class PeliculasListAdapter(val peliculas: List<Pelicula>, val context: Context) :

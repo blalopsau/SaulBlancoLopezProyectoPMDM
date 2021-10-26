@@ -4,7 +4,7 @@ package com.example.blancolopezsaulproyectopmdm.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.blancolopezsaulproyectopmdm.Preferences
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityMainBinding
 

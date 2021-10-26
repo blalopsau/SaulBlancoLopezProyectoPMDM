@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
-import com.example.blancolopezsaulproyectopmdm.entities.Pelicula
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 
 private lateinit var binding: ActivityPeliculasBinding
 

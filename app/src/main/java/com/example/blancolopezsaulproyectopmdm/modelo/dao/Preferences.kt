@@ -1,4 +1,4 @@
-package com.example.blancolopezsaulproyectopmdm
+package com.example.blancolopezsaulproyectopmdm.modelo.dao
 
 import android.content.Context
 
