@@ -35,6 +35,7 @@ class CrearcuentaActivity : AppCompatActivity() {
 
                 pref.guardar(usuario, contraseña)
                 startActivity(intent)
+
             }
         }
     }
