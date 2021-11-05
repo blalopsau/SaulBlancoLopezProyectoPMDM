@@ -27,7 +27,6 @@ class CrearcuentaActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             comprobarDatos()//Comprobamos que la contraseña cumpla los parámetros
 
-
             if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en el sharedPreferences
 
                 val usuario = binding.tietNombreUsuario.text.toString()

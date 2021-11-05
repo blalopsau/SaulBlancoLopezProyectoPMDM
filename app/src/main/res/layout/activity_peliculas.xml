@@ -10,39 +10,41 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|end"
-
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        app:backgroundTint="@color/colorRojoNetflix"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/tvListaPeliculas"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="251dp"
-        android:text="Lista de peliculas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/black">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListaPelis"
-        android:layout_width="359dp"
-        android:layout_height="798dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvListaPeliculas" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|end"
+
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            app:backgroundTint="@color/colorRojoNetflix"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tvListaPeliculas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Lista de peliculas:"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListaPelis"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvListaPeliculas" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

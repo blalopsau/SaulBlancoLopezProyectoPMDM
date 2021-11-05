@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
-import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.PeliculasDaoMockImpl
+
 
 private lateinit var binding: ActivityPeliculasBinding
 
@@ -15,19 +16,17 @@ class PeliculasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_peliculas)
 
-        binding= ActivityPeliculasBinding.inflate(layoutInflater)
+        binding = ActivityPeliculasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rvListaPelis.layoutManager=LinearLayoutManager(this)
+        val peliculasDao= PeliculasDaoMockImpl()
+        val listaPelicula=peliculasDao.getTodos()
 
-        val peliculas= listOf(
-            Pelicula("Game of thrones","Ciencia Ficción","George R.R","9.2"),
-            Pelicula("El rey","Documental","George R.R","9.2"),
-            Pelicula("Ratatuille","animacion","George R.R","10")
-        )
-
-        var adapter=PeliculasListAdapter(peliculas,this)
+        val layoutManager = LinearLayoutManager(this)
+        val adapter=PeliculasListAdapter(listaPelicula)
 
         binding.rvListaPelis.adapter=adapter
+        binding.rvListaPelis.layoutManager=layoutManager
+
     }
 }

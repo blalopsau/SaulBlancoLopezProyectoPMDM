@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#E50914"
+    android:background="@color/black"
     tools:context=".activities.MainActivity">
 
     <ImageView
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:background="#0000FFFF"
         android:text="crear cuenta"
-        android:textColor="?android:attr/textColorHint"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,8 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Usuario"
-            android:textCursorDrawable="@color/colorRojoNetflix"
-            />
+            android:textCursorDrawable="@color/colorRojoNetflix" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
