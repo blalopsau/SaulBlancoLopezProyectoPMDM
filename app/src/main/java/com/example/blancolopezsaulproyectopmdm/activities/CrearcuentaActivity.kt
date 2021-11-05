@@ -1,9 +1,10 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityCrearcuentaBinding
-import android.content.Intent
+
 import android.util.Patterns
 import android.widget.Toast
 import com.example.blancolopezsaulproyectopmdm.R

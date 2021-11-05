@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlancoLopezSaulProyectoPMDM">
         <activity
+            android:name=".activities.DetallesPeliculaActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.PeliculasActivity"
             android:exported="true"
             android:label="@string/title_activity_peliculas"
