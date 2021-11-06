@@ -21,30 +21,20 @@
 
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="25dp"
+            android:contentDescription="@string/floating_button"
             app:backgroundTint="@color/colorRojoNetflix"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_input_add"
             tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
-        <TextView
-            android:id="@+id/tvListaPeliculas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Lista de peliculas:"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvListaPelis"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvListaPeliculas" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

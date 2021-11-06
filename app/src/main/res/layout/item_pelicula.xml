@@ -15,7 +15,7 @@
         android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DAD8D8"
+        android:background="#8F8E8E"
         android:padding="15dp">
 
         <TextView
@@ -33,15 +33,15 @@
             android:id="@+id/tvGenero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="28dp"
             android:scrollbarSize="4dp"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:autoSizeMaxTextSize="100dp"
             app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/tvDirector"
+            app:layout_constraintBottom_toBottomOf="@+id/Genero"
             app:layout_constraintStart_toEndOf="@+id/Genero"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            app:layout_constraintTop_toTopOf="@+id/Genero"
             tools:text="Terror" />
 
         <ImageView
@@ -60,8 +60,9 @@
             android:layout_marginStart="20dp"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/Director"
             app:layout_constraintStart_toEndOf="@+id/Director"
+            app:layout_constraintTop_toTopOf="@+id/Director"
             tools:text=" James Wan" />
 
         <TextView
@@ -85,14 +86,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.505"
             tools:text="9.0" />
 
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="30dp"
+            android:scrollbars="horizontal"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"

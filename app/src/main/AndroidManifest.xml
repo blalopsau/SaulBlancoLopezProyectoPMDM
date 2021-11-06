@@ -7,30 +7,38 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Netflix"
+        android:label="MiraPelis"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlancoLopezSaulProyectoPMDM">
+
         <activity
             android:name=".activities.DetallesPeliculaActivity"
             android:exported="true" />
+
         <activity
             android:name=".activities.PeliculasActivity"
             android:exported="true"
             android:label="@string/title_activity_peliculas"
             android:theme="@style/Theme.BlancoLopezSaulProyectoPMDM.NoActionBar" />
+
         <activity
             android:name=".activities.CrearcuentaActivity"
             android:exported="true" />
+
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

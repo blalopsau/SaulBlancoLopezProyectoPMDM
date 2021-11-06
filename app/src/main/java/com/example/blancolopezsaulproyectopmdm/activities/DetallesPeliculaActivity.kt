@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityDetallesPeliculaBinding
-import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.squareup.picasso.Picasso
+import android.text.method.ScrollingMovementMethod
+
+
+
 
 class DetallesPeliculaActivity : AppCompatActivity() {
+
     companion object{
         lateinit var pelicula:Pelicula
     }
+
     private lateinit var binding: ActivityDetallesPeliculaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +24,8 @@ class DetallesPeliculaActivity : AppCompatActivity() {
 
         binding= ActivityDetallesPeliculaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        pelicula=intent.extras?.get("pelicula") as Pelicula
 
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaDetalle)
         binding.tvTituloDetalle.text= pelicula.titulo
@@ -28,5 +35,6 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         binding.tvPlataformaDetalle.text= pelicula.plataforma
         binding.tvTiempoDetalle.text= pelicula.tiempo
 
+        binding.tvDescripcionDetalle.setMovementMethod(ScrollingMovementMethod())
     }
 }

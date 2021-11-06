@@ -53,7 +53,7 @@ class CrearcuentaActivity : AppCompatActivity() {
             Toast.makeText(this, "El email no es correcto", Toast.LENGTH_SHORT)
                 .show()//Mensaje de que el email es incorrecto
             return false
-        } else if (contraseña.length < 8 || contraseña.length > 16) {//Comprobamos la longitud de la contraseña
+        } else if (contraseña.length < 5 || contraseña.length > 10) {//Comprobamos la longitud de la contraseña
             Toast.makeText(this, "La contraseña no tiene la longitud correcta", Toast.LENGTH_SHORT)
                 .show()//Mensaje de que el email es incorrecto
             return false
