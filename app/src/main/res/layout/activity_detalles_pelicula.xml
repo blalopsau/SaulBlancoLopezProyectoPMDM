@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="30dp"
-            android:text="Duración:"
+            android:text="@string/duracion"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Plataforma:"
+            android:text="@string/plataforma"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -46,7 +46,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvDescripcionDetalle"
             app:layout_constraintTop_toTopOf="@+id/tvDescripcionDetalle"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/caratulapelicula" />
 
         <TextView
             android:id="@+id/tvTituloDetalle"
@@ -93,7 +94,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvTiempoDetalle"
             app:layout_constraintEnd_toStartOf="@+id/tvNotaDetalle"
             app:layout_constraintTop_toTopOf="@+id/tvTiempoDetalle"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:contentDescription="@string/estrellavaloraciones" />
 
         <TextView
             android:id="@+id/tvGeneroDetalle"
@@ -136,11 +138,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="Género:"
+            android:text="@string/genero"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDescripcionDetalle" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

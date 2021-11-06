@@ -13,10 +13,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/akronim"
-        android:text="MiraPelis"
+        android:text="@string/mirapelis"
         android:textAlignment="center"
         android:textColor="@color/colorRojoNetflix"
-        android:textSize="100dp"
+        android:textSize="100sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             android:id="@+id/tietContrasenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="@string/contrase_a"
             android:inputType="textPassword"
             android:textCursorDrawable="@color/colorRojoNetflix" />
 
@@ -58,7 +58,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="100dp"
         android:backgroundTint="@color/colorRojoNetflix"
-        android:text="Login"
+        android:text="@string/login"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#0000FFFF"
-        android:text="crear cuenta"
+        android:text="@string/crear_cuenta"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -104,7 +104,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Usuario"
+            android:hint="@string/usuario"
             android:textCursorDrawable="@color/colorRojoNetflix" />
     </com.google.android.material.textfield.TextInputLayout>
 

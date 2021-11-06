@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/black"
         android:paddingBottom="15dp">
 
@@ -28,14 +28,15 @@
             app:hintTextColor="@color/colorRojoNetflix"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvApp">
+            app:layout_constraintTop_toBottomOf="@+id/tvApp"
+            app:startIconDrawable="@drawable/outline_account_circle_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietNombreUsuario"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usuario"
+                android:hint="@string/usuario"
                 android:textCursorDrawable="@color/colorRojoNetflix" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,14 +53,15 @@
             app:hintTextColor="@color/colorRojoNetflix"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilNombreUsuario">
+            app:layout_constraintTop_toBottomOf="@+id/tilNombreUsuario"
+            app:startIconDrawable="@drawable/outline_account_circle_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietApellidos"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Apellidos"
+                android:hint="@string/apellidos"
                 android:textCursorDrawable="@color/colorRojoNetflix" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,14 +78,15 @@
             app:hintTextColor="@color/colorRojoNetflix"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilApellidos">
+            app:layout_constraintTop_toBottomOf="@+id/tilApellidos"
+            app:startIconDrawable="@drawable/outline_email_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:textCursorDrawable="@color/colorRojoNetflix" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -101,14 +104,15 @@
             app:hintTextColor="@color/colorRojoNetflix"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilEmail">
+            app:layout_constraintTop_toBottomOf="@+id/tilEmail"
+            app:startIconDrawable="@drawable/outline_lock_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietContraseña"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contraseña"
+                android:hint="@string/contrase_a"
                 android:textCursorDrawable="@color/colorRojoNetflix" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,14 +129,15 @@
             app:hintTextColor="@color/colorRojoNetflix"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilContraseña">
+            app:layout_constraintTop_toBottomOf="@+id/tilContraseña"
+            app:startIconDrawable="@drawable/outline_lock_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietRepetirContraseña"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Repetir contraseña"
+                android:hint="@string/repetir_contrase_a"
                 android:textCursorDrawable="@color/colorRojoNetflix" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +149,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="50dp"
             android:backgroundTint="@color/colorRojoNetflix"
-            android:text="Crear cuenta"
+            android:text="@string/crear_cuenta"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,10 +161,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/akronim"
-            android:text="MiraPelis"
+            android:text="@string/mirapelis"
             android:textAlignment="center"
             android:textColor="@color/colorRojoNetflix"
-            android:textSize="100dp"
+            android:textSize="100sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
