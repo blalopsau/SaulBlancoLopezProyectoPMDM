@@ -34,7 +34,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaDetalle)
         binding.tvTituloDetalle.text = pelicula.titulo
         binding.tvDescripcionDetalle.text = pelicula.descripcion
-        binding.tvNotaDetalle.text = pelicula.nota
+        binding.rbNota.rating= pelicula.nota.toFloat()
         binding.tvDescripcionDetalle.setMovementMethod(ScrollingMovementMethod())
         binding.tvGeneroDetalle.text = pelicula.genero
         binding.tvPlataformaDetalle.text = pelicula.plataforma

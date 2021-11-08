@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".activities.DetallesPeliculaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,10 +16,9 @@
             android:id="@+id/tiempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="30dp"
             android:text="@string/duracion"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/plataforma"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,12 +41,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="5dp"
+            android:contentDescription="@string/caratulapelicula"
             app:layout_constraintBottom_toBottomOf="@+id/tvDescripcionDetalle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvDescripcionDetalle"
             app:layout_constraintTop_toTopOf="@+id/tvDescripcionDetalle"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/caratulapelicula" />
+            tools:ignore="ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvTituloDetalle"
@@ -63,50 +63,27 @@
         <TextView
             android:id="@+id/tvDescripcionDetalle"
             android:layout_width="400dp"
-            android:layout_height="409dp"
+            android:layout_height="400dp"
             android:layout_marginTop="24dp"
             android:elegantTextHeight="true"
             android:padding="5dp"
             android:scrollbars="vertical"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTituloDetalle"
             tools:text="After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady." />
 
         <TextView
-            android:id="@+id/tvNotaDetalle"
-            android:layout_width="wrap_content"
-            android:layout_height="66dp"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tvTiempoDetalle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvTiempoDetalle"
-            tools:text="8.5" />
-
-        <ImageView
-            android:id="@+id/ivEstrella"
-            android:layout_width="107dp"
-            android:layout_height="87dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvTiempoDetalle"
-            app:layout_constraintEnd_toStartOf="@+id/tvNotaDetalle"
-            app:layout_constraintTop_toTopOf="@+id/tvTiempoDetalle"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            android:contentDescription="@string/estrellavaloraciones" />
-
-        <TextView
             android:id="@+id/tvGeneroDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="56dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/genero"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescripcionDetalle"
+            app:layout_constraintTop_toTopOf="@+id/genero"
             tools:text="Ciencia Ficción" />
 
         <TextView
@@ -114,34 +91,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="46dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tiempo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPlataformaDetalle"
+            app:layout_constraintTop_toTopOf="@+id/tiempo"
             tools:text="4h 33min" />
 
         <TextView
             android:id="@+id/tvPlataformaDetalle"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="43dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/plataforma"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvGeneroDetalle"
+            app:layout_constraintTop_toTopOf="@+id/plataforma"
             tools:text="Netflix" />
 
         <TextView
             android:id="@+id/genero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:text="@string/genero"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="40sp"
             android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbNota" />
+
+        <RatingBar
+            android:id="@+id/rbNota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:isIndicator="true"
+            android:max="10"
+            android:numStars="10"
+            android:progressTint="#FFEB3B"
+            android:secondaryProgressTint="#FFEB3B"
+            android:stepSize="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDescripcionDetalle" />
 
