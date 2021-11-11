@@ -124,16 +124,16 @@
 
         <RatingBar
             android:id="@+id/rbNota"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:isIndicator="true"
             android:max="10"
             android:numStars="10"
-            android:progressTint="#FFEB3B"
-            android:secondaryProgressTint="#FFEB3B"
+            android:progressTint="#D8A201"
+            android:secondaryProgressTint="#BD8E00"
             android:stepSize="0.25"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDescripcionDetalle" />
 
