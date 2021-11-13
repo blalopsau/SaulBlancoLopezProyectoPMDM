@@ -18,11 +18,13 @@ import androidx.appcompat.app.AlertDialog
 import com.example.blancolopezsaulproyectopmdm.activities.EditarPeliculaActivity
 
 
-class PeliculasListAdapter(val peliculas: List<Pelicula>, val context: Context) :  RecyclerView.Adapter<PeliculasListAdapter.PeliculasViewHolder>() {
+class PeliculasListAdapter(val peliculas: List<Pelicula>, val context: Context) :
+    RecyclerView.Adapter<PeliculasListAdapter.PeliculasViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeliculasViewHolder {
-        val layoutInflater =LayoutInflater.from(parent.context).inflate(R.layout.item_pelicula, parent,false)
+        val layoutInflater =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_pelicula, parent, false)
         return PeliculasViewHolder(layoutInflater)
     }
 
@@ -35,24 +37,24 @@ class PeliculasListAdapter(val peliculas: List<Pelicula>, val context: Context) 
         holder.tvNota.setText(pelicula.nota)
         Picasso.get().load(pelicula.caratula).into(holder.ivCaratula)
 
-        holder.ivCardView.setOnClickListener{
+        holder.ivCardView.setOnClickListener {
             val adb = AlertDialog.Builder(context)
 
             adb.setTitle("Pelicula")
             adb.setMessage("Que quieres hacer con la película?")
 
             adb.setPositiveButton("Ver los detalles de la pelicula") { dialogInterface, i ->
-                val intent = Intent(context,DetallesPeliculaActivity::class.java)
-                intent.putExtra("pelicula",pelicula)
+                val intent = Intent(context, DetallesPeliculaActivity::class.java)
+                intent.putExtra("pelicula", pelicula)
                 context.startActivity(intent)
             }
-            adb.setNegativeButton("Editar la pelicula"){ dialogInterface, i ->
-                val intent = Intent(context,EditarPeliculaActivity::class.java)
-                intent.putExtra("pelicula",pelicula)
+            adb.setNegativeButton("Editar la pelicula") { dialogInterface, i ->
+                val intent = Intent(context, EditarPeliculaActivity::class.java)
+                intent.putExtra("pelicula", pelicula)
                 context.startActivity(intent)
             }
-            adb.setNeutralButton("Borrar la pelicula"){ dialogInterface, i ->
-                //TODO("BORRAR LA PELICULA")
+           adb.setNeutralButton("Borrar la pelicula") { dialogInterface, i ->
+                TODO("BORRAR LA PELICULA")
             }
             adb.show()
         }

@@ -1,5 +1,6 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
+import android.R.attr
 import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import com.example.blancolopezsaulproyectopmdm.databinding.ActivityEditarPelicul
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import android.provider.MediaStore
 import android.content.Intent
+import android.database.Cursor
 import android.net.Uri
 import android.os.Environment
 import androidx.activity.result.ActivityResult
@@ -17,16 +19,27 @@ import com.squareup.picasso.Picasso
 import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
+import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.ImageView
 import java.io.File
 import java.io.InputStream
+import android.R.attr.data
+import android.provider.ContactsContract
+import android.view.View
+import android.widget.Toast
+
+import androidx.core.app.ActivityCompat.startActivityForResult
+import java.lang.String
 
 
 class EditarPeliculaActivity : AppCompatActivity() {
     companion object {
         lateinit var pelicula: Pelicula
     }
+
+    private val SELECCIONADA = 100
+    var imageUri: Uri? = null
 
     private lateinit var binding: ActivityEditarPeliculaBinding
 
@@ -47,33 +60,22 @@ class EditarPeliculaActivity : AppCompatActivity() {
         binding.etNotaDetalle.setText(pelicula.nota)
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaEditar)
 
-        val resultContract =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
-                if (result?.resultCode == Activity.RESULT_OK) {
-                    val ruta = Environment.getExternalStorageDirectory().path
-
-                    Log.d("EditarPeliculaActivity", "Resultado: ${result.data}")
-
-                    Log.d("EditarPeliculaActivity", ruta)
-
-                    binding.etDescripcion.setText(ruta.toString())
-                    val file = File(ruta + "/Pictures")
-                    Picasso.get().load("content://media/external/images/media/32").into(binding.ivCaratulaEditar)
-                    //TODO("ERROR DE CARGA DE LA IMAGEN EN EL IMAGEVIEW")
-                }
-            }
         binding.btSeleccionar.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.setType("image/*")
-            resultContract.launch(intent)
-
+            startActivityForResult(intent, SELECCIONADA)
         }
 
         binding.btEditar.setOnClickListener {
             //TODO("CAMBIAR DATOS DE PeliculasDaoMockImpl")
         }
-
     }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == SELECCIONADA) {
+            imageUri = data?.data
+            binding.ivCaratulaEditar.setImageURI(imageUri)
+        }
+    }
 }

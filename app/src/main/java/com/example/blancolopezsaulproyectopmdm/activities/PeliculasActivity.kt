@@ -34,6 +34,5 @@ class PeliculasActivity : AppCompatActivity() {
             val intent = Intent(this, EditarPeliculaActivity::class.java)
             startActivity(intent)
         }
-
     }
 }
