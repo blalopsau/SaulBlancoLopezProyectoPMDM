@@ -75,7 +75,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == SELECCIONADA) {
             imageUri = data?.data
-            binding.ivCaratulaEditar.setImageURI(imageUri)
+            Picasso.get().load(imageUri).into(binding.ivCaratulaEditar)
         }
     }
 }
