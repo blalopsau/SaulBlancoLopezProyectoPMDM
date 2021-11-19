@@ -1,7 +1,5 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
-import android.R.attr
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.blancolopezsaulproyectopmdm.R
@@ -9,34 +7,14 @@ import com.example.blancolopezsaulproyectopmdm.databinding.ActivityEditarPelicul
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import android.provider.MediaStore
 import android.content.Intent
-import android.database.Cursor
 import android.net.Uri
-import android.os.Environment
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.net.toUri
 import com.squareup.picasso.Picasso
-import android.graphics.BitmapFactory
-
-import android.graphics.Bitmap
-import android.preference.PreferenceManager
-import android.util.Log
-import android.widget.ImageView
-import java.io.File
-import java.io.InputStream
-import android.R.attr.data
-import android.provider.ContactsContract
-import android.view.View
-import android.widget.Toast
-
-import androidx.core.app.ActivityCompat.startActivityForResult
-import java.lang.String
 
 
 class EditarPeliculaActivity : AppCompatActivity() {
-    companion object {
-        lateinit var pelicula: Pelicula
-    }
+
+    private lateinit var pelicula: Pelicula
+
 
     private val SELECCIONADA = 100
     var imageUri: Uri? = null
@@ -52,7 +30,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
 
         pelicula = intent.extras?.get("pelicula") as Pelicula
 
-        binding.etTitulo.setText(pelicula.titulo)
+        binding.etAnadirTitulo.setText(pelicula.titulo)
         binding.etDescripcion.setText(pelicula.descripcion)
         binding.etGenero.setText(pelicula.genero)
         binding.etPlataforma.setText(pelicula.plataforma)
@@ -67,7 +45,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
         }
 
         binding.btEditar.setOnClickListener {
-            //TODO("CAMBIAR DATOS DE PeliculasDaoMockImpl")
+            //TODO("Cambiar datos de la película")
         }
     }
 

@@ -8,7 +8,7 @@ import com.example.blancolopezsaulproyectopmdm.databinding.ActivityCrearcuentaBi
 import android.util.Patterns
 import android.widget.Toast
 import com.example.blancolopezsaulproyectopmdm.R
-import com.example.blancolopezsaulproyectopmdm.activities.MainActivity.Companion.pref
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 import java.util.regex.Pattern
 
 
@@ -16,9 +16,12 @@ class CrearcuentaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCrearcuentaBinding
 
+    private  lateinit var pref: Preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crearcuenta)
+        pref = Preferences(applicationContext)
 
         binding = ActivityCrearcuentaBinding.inflate(layoutInflater)
         setContentView(binding.root)

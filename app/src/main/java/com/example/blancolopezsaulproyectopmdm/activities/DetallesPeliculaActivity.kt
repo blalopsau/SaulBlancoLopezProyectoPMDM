@@ -13,9 +13,8 @@ import android.graphics.drawable.Drawable
 
 class DetallesPeliculaActivity : AppCompatActivity() {
 
-    companion object {
-        lateinit var pelicula: Pelicula
-    }
+     private  lateinit var pelicula: Pelicula
+
     private lateinit var binding: ActivityDetallesPeliculaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +35,16 @@ class DetallesPeliculaActivity : AppCompatActivity() {
             val progress: Drawable = binding.rbNota.getProgressDrawable()
             DrawableCompat.setTint(progress, Color.RED)
         }
-
-        binding.tvDescripcionDetalle.setMovementMethod(ScrollingMovementMethod())
         binding.tvGeneroDetalle.text = pelicula.genero
         binding.tvPlataformaDetalle.text = pelicula.plataforma
         binding.tvTiempoDetalle.text = pelicula.tiempo
+
+        //Poder hacer scroll si el texto es muy largo
+        binding.tvDescripcionDetalle.setMovementMethod(ScrollingMovementMethod())
+        binding.tvGeneroDetalle.setMovementMethod(ScrollingMovementMethod())
+        binding.tvPlataformaDetalle.setMovementMethod(ScrollingMovementMethod())
+        binding.tvTiempoDetalle.setMovementMethod(ScrollingMovementMethod())
+
+
     }
 }

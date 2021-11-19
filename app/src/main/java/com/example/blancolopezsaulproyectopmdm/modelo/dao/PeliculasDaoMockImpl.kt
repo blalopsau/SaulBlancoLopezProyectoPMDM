@@ -44,7 +44,7 @@ class PeliculasDaoMockImpl : PeliculasDao {
             "Acción, Crimen, Suspense",
             "Justin Lin",
             "7.4",
-            "Moviestar+",
+            "Movistar+",
             "2h 22m",
             "Dom Toretto lleva una vida tranquila con Letty y su hijo, el pequeño Brian, pero saben que el peligro siempre acecha. Esta vez, esa amenaza obligará a Dom a enfrentarse a los pecados de su pasado si quiere salvar a quienes más quiere. El equipo se vuelve a reunir para impedir un complot a escala mundial, liderado por uno de los asesinos más peligrosos y mejor conductor a los que se han enfrentado; un hombre que además es el hermano desaparecido de Dom, Jakob. Novena entrega de la famosa franquicia.",
             "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vdRgVlkkw1eHOdgYKXbzj0qSLB0.jpg",

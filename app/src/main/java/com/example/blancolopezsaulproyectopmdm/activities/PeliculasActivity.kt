@@ -1,6 +1,5 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,8 +29,8 @@ class PeliculasActivity : AppCompatActivity() {
         binding.rvListaPelis.adapter=adapter
         binding.rvListaPelis.layoutManager=layoutManager
 
-        binding.fab.setOnClickListener(){
-            val intent = Intent(this, EditarPeliculaActivity::class.java)
+        binding.fab.setOnClickListener{
+            val intent = Intent(this, AnadirPeliculaActivity::class.java)
             startActivity(intent)
         }
     }

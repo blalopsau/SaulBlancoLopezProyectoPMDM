@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
 
-    companion object {
-        lateinit var pref: Preferences
-    }
+    private  lateinit var pref: Preferences
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +27,18 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val nombre = pref.recuperarDatos("nombre")
+        val contraseña = pref.recuperarDatos("contraseña")
+
+        binding.tietUsuario.setText(nombre)
+        binding.tietContrasenha.setText(contraseña)
+
         binding.btCrearCuenta.setOnClickListener {//Cuando se pulsa el boton crear se va a la pantalla CrearcuentaActivity
             val intent = Intent(this, CrearcuentaActivity::class.java)
             startActivity(intent)
         }
 
         binding.btLogin.setOnClickListener {
-            val nombre = pref.recuperarDatos("nombre")
-            val contraseña = pref.recuperarDatos("contraseña")
-            
             if (!nombre.equals(binding.tietUsuario.text.toString())) {
                 binding.tietUsuario.setError("El usuario no existe")
             } else if (!contraseña.equals(binding.tietContrasenha.text.toString())) {

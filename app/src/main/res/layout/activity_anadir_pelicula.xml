@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".activities.EditarPeliculaActivity">
+    tools:context=".activities.AnadirPeliculaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,42 +13,42 @@
         android:padding="20dp">
 
         <Button
-            android:id="@+id/btSeleccionar"
+            android:id="@+id/btAnadirCaratula"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorRojoNetflix"
             android:text="Seleccionar Imagen"
             app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/etDescripcion"
+            app:layout_constraintBottom_toBottomOf="@+id/etAnadirDescripcion"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/etDescripcion" />
+            app:layout_constraintStart_toEndOf="@+id/etAnadirDescripcion" />
 
         <ImageView
-            android:id="@+id/ivCaratulaEditar"
+            android:id="@+id/ivCaratulaAñadir"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="5dp"
             android:contentDescription="@string/caratulapelicula"
-            app:layout_constraintBottom_toTopOf="@+id/btSeleccionar"
+            app:layout_constraintBottom_toTopOf="@+id/btAnadirCaratula"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/etDescripcion"
-            app:layout_constraintTop_toTopOf="@+id/etDescripcion"
+            app:layout_constraintStart_toEndOf="@+id/etAnadirDescripcion"
+            app:layout_constraintTop_toTopOf="@+id/etAnadirDescripcion"
             tools:ignore="ImageContrastCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
-            android:id="@+id/ivEstrella2"
+            android:id="@+id/ivEstrella"
             android:layout_width="107dp"
             android:layout_height="87dp"
             android:contentDescription="@string/estrellavaloraciones"
-            app:layout_constraintBottom_toBottomOf="@+id/etTiempo"
+            app:layout_constraintBottom_toBottomOf="@+id/etAnadirTiempo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/etTiempo"
-            app:layout_constraintTop_toTopOf="@+id/etTiempo"
+            app:layout_constraintStart_toEndOf="@+id/etAnadirTiempo"
+            app:layout_constraintTop_toTopOf="@+id/etAnadirTiempo"
             app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <EditText
-            android:id="@+id/etTiempo"
+            android:id="@+id/etAnadirTiempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
@@ -60,12 +60,12 @@
             android:textColor="@color/black"
             android:textCursorDrawable="@color/colorRojoNetflix"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tiempo2"
+            app:layout_constraintBottom_toBottomOf="@+id/tiempo3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tiempo2" />
+            app:layout_constraintTop_toTopOf="@+id/tiempo3" />
 
         <TextView
-            android:id="@+id/genero2"
+            android:id="@+id/genero3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -74,10 +74,10 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
+            app:layout_constraintTop_toBottomOf="@+id/etAnadirDescripcion" />
 
         <TextView
-            android:id="@+id/plataforma2"
+            android:id="@+id/plataforma3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -86,10 +86,10 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/genero2" />
+            app:layout_constraintTop_toBottomOf="@+id/genero3" />
 
         <TextView
-            android:id="@+id/tiempo2"
+            android:id="@+id/tiempo3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -98,7 +98,7 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plataforma2" />
+            app:layout_constraintTop_toBottomOf="@+id/plataforma3" />
 
         <EditText
             android:id="@+id/etAnadirTitulo"
@@ -120,7 +120,7 @@
             tools:ignore="LabelFor" />
 
         <EditText
-            android:id="@+id/etDescripcion"
+            android:id="@+id/etAnadirDescripcion"
             android:layout_width="400dp"
             android:layout_height="400dp"
             android:layout_marginTop="24dp"
@@ -138,7 +138,7 @@
             app:layout_constraintTop_toBottomOf="@+id/etAnadirTitulo" />
 
         <EditText
-            android:id="@+id/etPlataforma"
+            android:id="@+id/etAnadirPlataforma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
@@ -150,12 +150,12 @@
             android:textColor="@color/black"
             android:textCursorDrawable="@color/colorRojoNetflix"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/plataforma2"
+            app:layout_constraintBottom_toBottomOf="@+id/plataforma3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/plataforma2" />
+            app:layout_constraintTop_toTopOf="@+id/plataforma3" />
 
         <EditText
-            android:id="@+id/etGenero"
+            android:id="@+id/etAnadirGenero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
@@ -167,12 +167,12 @@
             android:textColor="@color/black"
             android:textCursorDrawable="@color/colorRojoNetflix"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/genero2"
+            app:layout_constraintBottom_toBottomOf="@+id/genero3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/genero2" />
+            app:layout_constraintTop_toTopOf="@+id/genero3" />
 
         <EditText
-            android:id="@+id/etNotaDetalle"
+            android:id="@+id/etAnadirNota"
             android:layout_width="77dp"
             android:layout_height="80dp"
             android:backgroundTint="@color/black"
@@ -183,21 +183,22 @@
             android:textCursorDrawable="@color/colorRojoNetflix"
             android:textSize="40sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivEstrella2"
-            app:layout_constraintStart_toEndOf="@+id/ivEstrella2"
-            app:layout_constraintTop_toTopOf="@+id/ivEstrella2" />
+            app:layout_constraintBottom_toBottomOf="@+id/ivEstrella"
+            app:layout_constraintStart_toEndOf="@+id/ivEstrella"
+            app:layout_constraintTop_toTopOf="@+id/ivEstrella" />
 
         <Button
-            android:id="@+id/btEditar"
+            android:id="@+id/btAñadir"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/colorRojoNetflix"
-            android:text="Editar"
+            android:text="Añadir Pelicula"
             app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etTiempo" />
+            app:layout_constraintTop_toBottomOf="@+id/etAnadirTiempo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

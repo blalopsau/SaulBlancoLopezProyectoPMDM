@@ -26,4 +26,5 @@
     <string name="mirapelis">MiraPelis</string>
     <string name="director">Director:</string>
     <string name="g_nero">Género:</string>
+    <string name="detalles">Ver detalles de la pelicula</string>
 </resources>
