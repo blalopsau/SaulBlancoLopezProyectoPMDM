@@ -8,8 +8,9 @@ import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import android.provider.MediaStore
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
 import com.squareup.picasso.Picasso
-
 
 class EditarPeliculaActivity : AppCompatActivity() {
 
@@ -33,6 +34,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
         binding.etAnadirTitulo.setText(pelicula.titulo)
         binding.etDescripcion.setText(pelicula.descripcion)
         binding.etGenero.setText(pelicula.genero)
+        binding.etDirectorDetalle.setText(pelicula.director)
         binding.etPlataforma.setText(pelicula.plataforma)
         binding.etTiempo.setText(pelicula.tiempo)
         binding.etNotaDetalle.setText(pelicula.nota)
@@ -45,7 +47,21 @@ class EditarPeliculaActivity : AppCompatActivity() {
         }
 
         binding.btEditar.setOnClickListener {
-            //TODO("Cambiar datos de la película")
+            peliculas.remove(pelicula)
+            val titulo=binding.etAnadirTitulo.text.toString()
+            val genero = binding.etGenero.text.toString()
+            val director = binding.etDirectorDetalle.text.toString()
+            val nota = binding.etNotaDetalle.text.toString()
+            val plataforma = binding.etPlataforma.text.toString()
+            val tiempo = binding.etTiempo.text.toString()
+            val descripcion = binding.etDescripcion.text.toString()
+            val caratula=imageUri.toString()
+            Log.d("url imagen",caratula)
+
+            val pel =  Pelicula(titulo, genero, director, nota, plataforma, tiempo, descripcion, caratula)
+            peliculas.add(pel)
+            //TODO("No carga la foto")
+            finish()
         }
     }
 

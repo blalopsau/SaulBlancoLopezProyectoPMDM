@@ -33,8 +33,8 @@ class CrearcuentaActivity : AppCompatActivity() {
 
             if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en el sharedPreferences
 
-                val usuario = binding.tietNombreUsuario.text.toString()
-                val contraseña = binding.tietContraseA.text.toString()
+                val usuario = binding.tietNombreUsuario.text.toString().trim()
+                val contraseña = binding.tietContraseA.text.toString().trim()
 
                 pref.guardar(usuario, contraseña)
                 startActivity(intent)

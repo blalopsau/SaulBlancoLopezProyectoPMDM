@@ -12,6 +12,35 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
+        <TextView
+            android:id="@+id/genero4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Director"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genero2" />
+
+        <EditText
+            android:id="@+id/etDirectorDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:backgroundTint="@color/black"
+            android:cursorVisible="true"
+            android:hint="Director"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@color/colorRojoNetflix"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/genero4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/genero4" />
+
         <Button
             android:id="@+id/btSeleccionar"
             android:layout_width="0dp"
@@ -86,7 +115,7 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/genero2" />
+            app:layout_constraintTop_toBottomOf="@+id/genero4" />
 
         <TextView
             android:id="@+id/tiempo2"

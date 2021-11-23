@@ -45,6 +45,5 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         binding.tvPlataformaDetalle.setMovementMethod(ScrollingMovementMethod())
         binding.tvTiempoDetalle.setMovementMethod(ScrollingMovementMethod())
 
-
     }
 }

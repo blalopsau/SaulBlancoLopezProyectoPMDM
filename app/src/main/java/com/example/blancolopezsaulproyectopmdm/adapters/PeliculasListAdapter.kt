@@ -16,9 +16,10 @@ import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.squareup.picasso.Picasso
 import androidx.appcompat.app.AlertDialog
 import com.example.blancolopezsaulproyectopmdm.activities.EditarPeliculaActivity
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
 
 
-class PeliculasListAdapter(val peliculas: List<Pelicula>, val context: Context) :
+class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Context) :
     RecyclerView.Adapter<PeliculasListAdapter.PeliculasViewHolder>() {
 
 
@@ -29,7 +30,7 @@ class PeliculasListAdapter(val peliculas: List<Pelicula>, val context: Context) 
     }
 
     override fun onBindViewHolder(holder: PeliculasViewHolder, position: Int) {
-        val pelicula = peliculas.get(position)
+        val pelicula = listpeliculas.get(position)
 
         holder.tvTitulo.setText(pelicula.titulo)
         holder.tvGenero.setText(pelicula.genero)
@@ -51,7 +52,9 @@ class PeliculasListAdapter(val peliculas: List<Pelicula>, val context: Context) 
                 context.startActivity(intent)
             }
             adb.setNeutralButton("Borrar la pelicula") { dialogInterface, i ->
-                Toast.makeText(context,"Película eliminada",Toast.LENGTH_SHORT).show()
+                peliculas.remove(pelicula)
+                //TODO("Recargar el RecyclerView")
+
             }
             adb.show()
         }

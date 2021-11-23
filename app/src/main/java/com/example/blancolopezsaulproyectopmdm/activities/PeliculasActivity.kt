@@ -3,16 +3,18 @@ package com.example.blancolopezsaulproyectopmdm.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.App
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.PeliculasDaoMockImpl
 
-
 private lateinit var binding: ActivityPeliculasBinding
 
 class PeliculasActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_peliculas)
@@ -20,18 +22,26 @@ class PeliculasActivity : AppCompatActivity() {
         binding = ActivityPeliculasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val peliculasDao= PeliculasDaoMockImpl()
-        val listaPelicula=peliculasDao.getTodos()
+        val peliculasDao = PeliculasDaoMockImpl()
+        val listaPelicula = peliculasDao.getTodos()
 
         val layoutManager = LinearLayoutManager(this)
-        val adapter=PeliculasListAdapter(listaPelicula,this)
+        val adapter = PeliculasListAdapter(listaPelicula, this)
 
-        binding.rvListaPelis.adapter=adapter
-        binding.rvListaPelis.layoutManager=layoutManager
+        binding.rvListaPelis.adapter = adapter
+        binding.rvListaPelis.layoutManager = layoutManager
 
-        binding.fab.setOnClickListener{
+        binding.fab.setOnClickListener {
             val intent = Intent(this, AnadirPeliculaActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val adapter = PeliculasListAdapter(App.peliculas, this)
+        binding.rvListaPelis.adapter = adapter
+        Log.d("resume", "se llama")
     }
 }
