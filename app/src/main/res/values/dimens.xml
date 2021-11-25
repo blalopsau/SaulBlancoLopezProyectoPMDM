@@ -1,3 +1,27 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Dimens layouts visuales -->
+    <dimen name="espacioFotoBoton">10dp</dimen>
+    <dimen name="espacioFotoTexto">30dp</dimen>
+    <dimen name="espacioText">25dp</dimen>
+    <dimen name="espacioTextoBoton">30dp</dimen>
+    <dimen name="espacioTituloTexto">70dp</dimen>
+
+    <!-- Dimens tamaños letra -->
+    <dimen name="tamañoNombreApp">85sp</dimen>
+    <dimen name="tamañoTitulos">25sp</dimen>
+    <dimen name="tamañoDescripcion">15sp</dimen>
+    <dimen name="tamañoTexto">20sp</dimen>
+    <dimen name="tamañoBoton">15sp</dimen>
+    <dimen name="tamañoEditables">15sp</dimen>
+    <dimen name="tamañoNota">30sp</dimen>
+
+    <!-- Dimens tamaños boton -->
+    <dimen name="tamañoBotonG">350dp</dimen>
+
+
 </resources>

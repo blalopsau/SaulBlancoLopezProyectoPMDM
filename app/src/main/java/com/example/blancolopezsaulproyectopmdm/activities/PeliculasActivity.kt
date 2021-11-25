@@ -42,6 +42,5 @@ class PeliculasActivity : AppCompatActivity() {
 
         val adapter = PeliculasListAdapter(App.peliculas, this)
         binding.rvListaPelis.adapter = adapter
-        Log.d("resume", "se llama")
     }
 }

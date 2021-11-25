@@ -16,7 +16,6 @@ class EditarPeliculaActivity : AppCompatActivity() {
 
     private lateinit var pelicula: Pelicula
 
-
     private val SELECCIONADA = 100
     var imageUri: Uri? = null
 
@@ -38,6 +37,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
         binding.etPlataforma.setText(pelicula.plataforma)
         binding.etTiempo.setText(pelicula.tiempo)
         binding.etNotaDetalle.setText(pelicula.nota)
+        binding.etTelefonoEditar.setText(pelicula.tel)
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaEditar)
 
         binding.btSeleccionar.setOnClickListener {
@@ -48,6 +48,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
 
         binding.btEditar.setOnClickListener {
             peliculas.remove(pelicula)
+
             val titulo=binding.etAnadirTitulo.text.toString()
             val genero = binding.etGenero.text.toString()
             val director = binding.etDirectorDetalle.text.toString()
@@ -56,11 +57,11 @@ class EditarPeliculaActivity : AppCompatActivity() {
             val tiempo = binding.etTiempo.text.toString()
             val descripcion = binding.etDescripcion.text.toString()
             val caratula=imageUri.toString()
+            val tel=binding.etTelefonoEditar.toString()
             Log.d("url imagen",caratula)
 
-            val pel =  Pelicula(titulo, genero, director, nota, plataforma, tiempo, descripcion, caratula)
+            val pel =  Pelicula(titulo, genero, director, nota, plataforma, tiempo, descripcion, caratula,tel)
             peliculas.add(pel)
-            //TODO("No carga la foto")
             finish()
         }
     }

@@ -13,10 +13,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/akronim"
-        android:text="@string/mirapelis"
+        android:text="@string/NombreApp"
         android:textAlignment="center"
         android:textColor="@color/colorRojoNetflix"
-        android:textSize="100sp"
+        android:textSize="@dimen/tamañoNombreApp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/espacioText"
         android:layout_marginEnd="50dp"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -45,24 +45,23 @@
             android:id="@+id/tietContrasenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/contrase_a"
+            android:hint="@string/Contraseña"
             android:inputType="textPassword"
+            android:maxLines="1"
             android:textCursorDrawable="@color/colorRojoNetflix" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btLogin"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/tamañoBotonG"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
         android:backgroundTint="@color/colorRojoNetflix"
-        android:text="@string/login"
+        android:text="@string/Acceder"
+        android:textSize="@dimen/tamañoBoton"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilContrasenha" />
 
@@ -71,8 +70,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#0000FFFF"
-        android:text="@string/crear_cuenta"
+        android:text="@string/CrearCuenta"
         android:textColor="@color/black"
+        android:textSize="@dimen/tamañoBoton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btLogin"
@@ -85,7 +85,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="91dp"
+        android:layout_marginTop="@dimen/espacioTituloTexto"
         android:layout_marginEnd="50dp"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -105,7 +105,8 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/usuario"
+            android:hint="@string/Usuario"
+            android:maxLines="1"
             android:textCursorDrawable="@color/colorRojoNetflix" />
     </com.google.android.material.textfield.TextInputLayout>
 

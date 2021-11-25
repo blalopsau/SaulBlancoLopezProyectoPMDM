@@ -43,13 +43,12 @@ class AnadirPeliculaActivity : AppCompatActivity() {
             val tiempo = binding.etAnadirTiempo.text.toString()
             val descripcion = binding.etAnadirDescripcion.text.toString()
             val caratula=imageUri.toString()
+            val tel=binding.tvTelefono.toString()
 
-            val pel =  Pelicula(titulo, genero, director, nota, plataforma, tiempo, descripcion, caratula)
+            val pel =  Pelicula(titulo, genero, director, nota, plataforma, tiempo, descripcion, caratula, tel)
             peliculas.add(pel)
             Log.d("añadir pelicula", imageUri.toString())
             finish()
-            //TODO("No carga la foto")
-
         }
     }
 

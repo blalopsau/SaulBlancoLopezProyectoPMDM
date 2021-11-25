@@ -2,6 +2,7 @@ package com.example.blancolopezsaulproyectopmdm.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +16,10 @@ import com.example.blancolopezsaulproyectopmdm.activities.DetallesPeliculaActivi
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.squareup.picasso.Picasso
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import com.example.blancolopezsaulproyectopmdm.activities.EditarPeliculaActivity
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
+import kotlinx.coroutines.newFixedThreadPoolContext
 
 
 class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Context) :
@@ -45,16 +48,12 @@ class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Conte
                 val intent = Intent(context, DetallesPeliculaActivity::class.java)
                 intent.putExtra("pelicula", pelicula)
                 context.startActivity(intent)
+                Log.d("Detalles","detalles")
             }
             adb.setNegativeButton("Editar la pelicula") { dialogInterface, i ->
                 val intent = Intent(context, EditarPeliculaActivity::class.java)
                 intent.putExtra("pelicula", pelicula)
                 context.startActivity(intent)
-            }
-            adb.setNeutralButton("Borrar la pelicula") { dialogInterface, i ->
-                peliculas.remove(pelicula)
-                //TODO("Recargar el RecyclerView")
-
             }
             adb.show()
         }

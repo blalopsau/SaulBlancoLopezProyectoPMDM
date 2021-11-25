@@ -14,6 +14,6 @@ class App : Application() {
 
         val dao=PeliculasDaoMockImpl()
 
-        peliculas =dao.getTodos()
+        peliculas = dao.getTodos()
     }
 }
