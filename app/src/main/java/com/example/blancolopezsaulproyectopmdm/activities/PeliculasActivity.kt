@@ -43,4 +43,9 @@ class PeliculasActivity : AppCompatActivity() {
         val adapter = PeliculasListAdapter(App.peliculas, this)
         binding.rvListaPelis.adapter = adapter
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        moveTaskToBack(true)
+    }
 }
