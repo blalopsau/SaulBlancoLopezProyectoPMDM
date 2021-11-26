@@ -14,7 +14,7 @@
 
         <EditText
             android:id="@+id/etAnadirTiempo2"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="140dp"
             android:backgroundTint="@color/black"
@@ -257,7 +257,7 @@
 
         <Button
             android:id="@+id/btAnadirPelicula"
-            android:layout_width="400dp"
+            android:layout_width="@dimen/tamañoBotonG"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/espacioTextoBoton"
             android:backgroundTint="@color/colorRojoNetflix"

@@ -37,7 +37,7 @@
 
     <!-- Botones -->
     <string name="Sel_Imagen">Seleccionar Imagen</string>
-    <string name="Añ_Pelicula">Seleccionar Imagen</string>
+    <string name="Añ_Pelicula">Añadir Pelicula</string>
     <string name="CrearCuenta">Crear Cuenta</string>
     <string name="Editar">Editar Pelicula</string>
     <string name="Acceder">Acceder</string>

@@ -14,7 +14,7 @@
     <!-- Dimens tamaños letra -->
     <dimen name="tamañoNombreApp">85sp</dimen>
     <dimen name="tamañoTitulos">25sp</dimen>
-    <dimen name="tamañoDescripcion">15sp</dimen>
+    <dimen name="tamañoDescripcion">20sp</dimen>
     <dimen name="tamañoTexto">20sp</dimen>
     <dimen name="tamañoBoton">15sp</dimen>
     <dimen name="tamañoEditables">15sp</dimen>
