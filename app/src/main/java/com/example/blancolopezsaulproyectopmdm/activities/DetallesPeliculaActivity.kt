@@ -11,6 +11,7 @@ import android.text.method.ScrollingMovementMethod
 import android.graphics.Color
 import androidx.core.graphics.drawable.DrawableCompat
 import android.graphics.drawable.Drawable
+import android.media.MediaPlayer
 import android.net.Uri
 import android.provider.ContactsContract
 import android.provider.MediaStore
@@ -53,7 +54,6 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         binding.tvPlataformaDetalle.text = pelicula.plataforma
         binding.tvDirectorDetalle.text = pelicula.director
         binding.tvTiempoDetalle.text = pelicula.tiempo
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
