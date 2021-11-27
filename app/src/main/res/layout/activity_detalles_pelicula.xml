@@ -159,6 +159,7 @@
             android:progressTint="#D8A201"
             android:secondaryProgressTint="#BD8E00"
             android:stepSize="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDescripcionDetalle" />
 
@@ -168,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/espacioFotoTexto"
             android:padding="10dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="@dimen/tamañoDescripcion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

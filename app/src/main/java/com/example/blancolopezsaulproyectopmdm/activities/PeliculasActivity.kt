@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.App
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.PeliculasDaoMockImpl
+import java.util.jar.Manifest
 
 private lateinit var binding: ActivityPeliculasBinding
 
@@ -22,6 +25,13 @@ class PeliculasActivity : AppCompatActivity() {
         binding = ActivityPeliculasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val requestPermissionLauncher=registerForActivityResult(ActivityResultContracts.RequestPermission()){ tengoPermiso:Boolean ->
+            if (!tengoPermiso){
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1)
+            }
+        }
+
+        requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
         val peliculasDao = PeliculasDaoMockImpl()
         val listaPelicula = peliculasDao.getTodos()
 
@@ -39,7 +49,6 @@ class PeliculasActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         val adapter = PeliculasListAdapter(App.peliculas, this)
         binding.rvListaPelis.adapter = adapter
     }

@@ -9,8 +9,11 @@ import android.provider.MediaStore
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
 import com.squareup.picasso.Picasso
+import java.util.jar.Manifest
 
 class EditarPeliculaActivity : AppCompatActivity() {
 
@@ -41,6 +44,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaEditar)
 
         binding.btSeleccionar.setOnClickListener {
+
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.setType("image/*")
             startActivityForResult(intent, SELECCIONADA)
@@ -49,18 +53,18 @@ class EditarPeliculaActivity : AppCompatActivity() {
         binding.btEditar.setOnClickListener {
             peliculas.remove(pelicula)
 
-            val titulo=binding.etAnadirTitulo.text.toString()
+            val titulo = binding.etAnadirTitulo.text.toString()
             val genero = binding.etGenero.text.toString()
             val director = binding.etDirectorDetalle.text.toString()
             val nota = binding.etNotaDetalle.text.toString()
             val plataforma = binding.etPlataforma.text.toString()
             val tiempo = binding.etTiempo.text.toString()
             val descripcion = binding.etDescripcion.text.toString()
-            val caratula=imageUri.toString()
-            val tel=binding.etTelefonoEditar.toString()
-            Log.d("url imagen",caratula)
+            val caratula = imageUri.toString()
+            val tel = binding.etTelefonoEditar.toString()
+            Log.d("url imagen", caratula)
 
-            val pel =  Pelicula(titulo, genero, director, nota, plataforma, tiempo, descripcion, caratula,tel)
+            val pel = Pelicula(titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
             peliculas.add(pel)
             finish()
         }
