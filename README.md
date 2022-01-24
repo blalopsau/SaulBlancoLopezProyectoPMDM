@@ -13,7 +13,6 @@ En esta pantalla se inicia la sesión para comenzar a trabajar con la app
 Se muestra una lista de películas en la que hay varias funcionalidades:
 
 - Creación: Hay un FloatingActionButton en el que podemos Añadir una película
-
 - Pulsando sobre una pelicula aparece un AlertDialog para elegir entre dos funciones:
 ![FloatingActionButton](imagenes/FloatingActionButton.png)
     - Editar película: Permite editar las características de una película.
