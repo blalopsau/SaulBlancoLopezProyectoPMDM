@@ -19,5 +19,5 @@ Se muestra una lista de películas en la que hay varias funcionalidades:
     - Ver detalles película: Muestra los detalles de la película.
 
 ### Ver detalles de la película:
-Se muestran todas las características de la película
+Se muestran todas las características de la película y permite borrar la película y llamar al director
 ![Detalles película](imagenes/DetallesPelicula.png)
