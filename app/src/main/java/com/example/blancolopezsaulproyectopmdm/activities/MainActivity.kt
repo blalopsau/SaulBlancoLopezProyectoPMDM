@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityMainBinding
+import java.io.IOException
 
 class MainActivity : AppCompatActivity(){
 
@@ -17,7 +18,6 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         pref = Preferences(applicationContext)
 

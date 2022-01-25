@@ -21,7 +21,6 @@ import com.example.blancolopezsaulproyectopmdm.activities.EditarPeliculaActivity
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
 import kotlinx.coroutines.newFixedThreadPoolContext
 
-
 class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Context) :
     RecyclerView.Adapter<PeliculasListAdapter.PeliculasViewHolder>() {
 
