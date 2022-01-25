@@ -1,18 +1,24 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.App
 import com.example.blancolopezsaulproyectopmdm.R
+import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
 import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.PeliculasDaoMockImpl
-import java.util.jar.Manifest
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 private lateinit var binding: ActivityPeliculasBinding
 
@@ -25,11 +31,22 @@ class PeliculasActivity : AppCompatActivity() {
         binding = ActivityPeliculasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val requestPermissionLauncher=registerForActivityResult(ActivityResultContracts.RequestPermission()){ tengoPermiso:Boolean ->
-            if (!tengoPermiso){
-                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1)
+        val requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { tengoPermiso: Boolean ->
+                if (!tengoPermiso) {
+                    ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1)
+                }
             }
-        }
+
+        val llamadaApi: Call<List<Pelicula>> = RetrofitCliente.apiRetrofit.getPeliculas()
+        llamadaApi.enqueue(object : Callback<List<Pelicula>> {
+            override fun onResponse(call: Call<List<Pelicula>>,response: Response<List<Pelicula>>) {
+
+            }
+            override fun onFailure(call: Call<List<Pelicula>>, t: Throwable) {
+
+            }
+        })
 
         requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
         val peliculasDao = PeliculasDaoMockImpl()
