@@ -3,12 +3,18 @@ package com.example.blancolopezsaulproyectopmdm.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityCrearcuentaBinding
 
 import android.util.Patterns
 import android.widget.Toast
 import com.example.blancolopezsaulproyectopmdm.R
+import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 
@@ -16,7 +22,7 @@ class CrearcuentaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCrearcuentaBinding
 
-    private  lateinit var pref: Preferences
+    private lateinit var pref: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,17 +33,28 @@ class CrearcuentaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        binding.btAceptar.setOnClickListener {//En el botón aceptar creamos el usuario en el sharedPreferences y pasamos a la pantalla de login
+        binding.btAceptar.setOnClickListener {//En el botón aceptar creamos el usuario en la api y pasamos a la pantalla de login
             val intent = Intent(this, MainActivity::class.java)
             comprobarDatos()//Comprobamos que la contraseña cumpla los parámetros
 
-            if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en el sharedPreferences
+            if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en la api
 
-                val usuario = binding.tietNombreUsuario.text.toString().trim()
-                val contraseña = binding.tietContraseA.text.toString().trim()
+                val usuario = binding.tietNombreUsuario.text.toString()
+                val contraseña = binding.tietContraseA.text.toString()
 
-                pref.guardar(usuario, contraseña)
-                startActivity(intent)
+                val call: Call<User> =
+                    RetrofitCliente.apiRetrofit.signup(User(null, usuario, contraseña))
+
+                call.enqueue(object : Callback<User> {
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+                        val id=response.body()?.id
+                        startActivity(intent)
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        Log.d("respuesta: onFailure", t.toString())
+                    }
+                })
             }
         }
     }

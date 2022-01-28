@@ -6,9 +6,8 @@ class Preferences(val context: Context) {
     val NOMBREARCHIVO = "MiBaseDatos"
     val pref = context.getSharedPreferences(NOMBREARCHIVO, 0)
 
-    fun guardar(user: String, psswd: String) {
-        pref.edit().putString("usuario", user).commit()
-        pref.edit().putString("contraseña", psswd).commit()
+    fun guardar(token: String) {
+        pref.edit().putString("token", token).commit()
     }
 
     fun recuperarDatos(datoARecuperar: String): String? {

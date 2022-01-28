@@ -38,16 +38,6 @@ class PeliculasActivity : AppCompatActivity() {
                 }
             }
 
-        val llamadaApi: Call<List<Pelicula>> = RetrofitCliente.apiRetrofit.getPeliculas()
-        llamadaApi.enqueue(object : Callback<List<Pelicula>> {
-            override fun onResponse(call: Call<List<Pelicula>>,response: Response<List<Pelicula>>) {
-
-            }
-            override fun onFailure(call: Call<List<Pelicula>>, t: Throwable) {
-
-            }
-        })
-
         requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
         val peliculasDao = PeliculasDaoMockImpl()
         val listaPelicula = peliculasDao.getTodos()
