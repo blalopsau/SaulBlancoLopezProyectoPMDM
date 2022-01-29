@@ -20,10 +20,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private lateinit var binding: ActivityPeliculasBinding
-
 class PeliculasActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityPeliculasBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_peliculas)

@@ -9,13 +9,4 @@ class Preferences(val context: Context) {
     fun guardar(token: String) {
         pref.edit().putString("token", token).commit()
     }
-
-    fun recuperarDatos(datoARecuperar: String): String? {
-        if (datoARecuperar == "nombre") {
-            return pref.getString("usuario", "")
-        } else if (datoARecuperar == "contraseña") {
-            return pref.getString("contraseña", "")
-        }
-        return null
-    }
 }
