@@ -1,6 +1,5 @@
 package com.example.blancolopezsaulproyectopmdm.modelo.dao.retrofit
 
-import android.media.session.MediaSession
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Token
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.User

@@ -2,8 +2,10 @@ package com.example.blancolopezsaulproyectopmdm.modelo.dao
 
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 
+
 class PeliculasDaoMockImpl : PeliculasDao {
     val lista = ArrayList<Pelicula>()
+
 
     override fun getTodos(): ArrayList<Pelicula> {
         lista.addAll(
