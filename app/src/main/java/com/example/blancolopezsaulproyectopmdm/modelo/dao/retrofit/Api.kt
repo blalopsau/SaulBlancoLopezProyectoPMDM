@@ -13,9 +13,9 @@ interface Api {
     fun getPeliculas(): Call<List<Pelicula>>
 
     @POST("users/signup")
-    fun signup(@Body user: User): Call<User>
+    fun signup(@Body users: User): Call<User>
 
     @POST("users/login")
-    fun login(@Body user: User): Call<MediaSession.Token>
+    fun login(@Body users: User): Call<MediaSession.Token>
 
 }

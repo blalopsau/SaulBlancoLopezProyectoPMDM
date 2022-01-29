@@ -1,5 +1,6 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import com.example.blancolopezsaulproyectopmdm.databinding.ActivityCrearcuentaBi
 
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
@@ -31,31 +33,37 @@ class CrearcuentaActivity : AppCompatActivity() {
 
         binding = ActivityCrearcuentaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val context = this
 
         binding.btAceptar.setOnClickListener {//En el botón aceptar creamos el usuario en la api y pasamos a la pantalla de login
-            val intent = Intent(this, MainActivity::class.java)
-            comprobarDatos()//Comprobamos que la contraseña cumpla los parámetros
 
-            if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en la api
+//            if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en la api
 
-                val usuario = binding.tietNombreUsuario.text.toString()
-                val contraseña = binding.tietContraseA.text.toString()
+                val usuario = binding.tietEmail.text.toString()
+                val contrasenha = binding.tietContraseA.text.toString()
 
-                val call: Call<User> =
-                    RetrofitCliente.apiRetrofit.signup(User(null, usuario, contraseña))
+                val call: Call<User> = RetrofitCliente.apiRetrofit.signup(User(null,usuario,contrasenha))
 
                 call.enqueue(object : Callback<User> {
-                    override fun onResponse(call: Call<User>, response: Response<User>) {
-                        val id=response.body()?.id
-                        startActivity(intent)
+                    override fun onResponse(call: Call<User>, response: Response<User>) {//Si el código es válido
+                        if (response.isSuccessful){
+                            val intent = Intent(context, MainActivity::class.java)
+                            startActivity(intent)
+
+                            val adb = AlertDialog.Builder(context)
+                            adb.setIcon(R.drawable.outline_check_circle_24)
+                            adb.setTitle("Cuenta creada")
+                            adb.setMessage("Cuenta creda con éxito.")
+                            adb.setPositiveButton("Aceptar") { dialog, which ->}
+                            adb.show()
+                        }
                     }
 
                     override fun onFailure(call: Call<User>, t: Throwable) {
                         Log.d("respuesta: onFailure", t.toString())
                     }
                 })
-            }
+//            }
         }
     }
 
