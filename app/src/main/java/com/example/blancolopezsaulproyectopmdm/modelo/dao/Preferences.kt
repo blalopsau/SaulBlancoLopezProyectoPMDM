@@ -9,4 +9,8 @@ class Preferences(val context: Context) {
     fun guardar(token: String) {
         pref.edit().putString("token", token).commit()
     }
+
+    fun sacarToken() : String? {
+        return pref.getString("token", "")
+    }
 }

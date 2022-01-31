@@ -1,8 +1,6 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
-import android.content.DialogInterface
 import android.content.Intent
-import android.media.session.MediaSession
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,14 +14,10 @@ import com.example.blancolopezsaulproyectopmdm.modelo.entities.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var pref: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             val contrasenha = binding.tietContrasenha.text.toString()
 
             if (binding.tietUsuario.text.toString().length == 0 || binding.tietContrasenha.text.toString().length == 0) {
+
 
                 val adb = AlertDialog.Builder(this)
                 adb.setIcon(R.drawable.outline_error_24)
@@ -73,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                             adb.show()
                         } else {
                             val token = response.body()?.token.toString()
-                           pref.guardar(token)
+                            pref.guardar(token)
                             val intent = Intent(context, PeliculasActivity::class.java)
                             startActivity(intent)
                         }

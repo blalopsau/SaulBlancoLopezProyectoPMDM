@@ -32,7 +32,7 @@ class CrearcuentaActivity : AppCompatActivity() {
 
         binding.btAceptar.setOnClickListener {//En el botón aceptar creamos el usuario en la api y pasamos a la pantalla de login
 
-           // if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en la api
+            if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en la api
 
                 //Le damos a las variables el valor de los textBoxs
             val usuario = binding.tietEmail.text.toString()
@@ -69,7 +69,7 @@ class CrearcuentaActivity : AppCompatActivity() {
                 }
             })
             }
-       // }
+        }
     }
 
     private fun validarEmail(email: String): Boolean { //Metodo que comprueba si el email es correcto
