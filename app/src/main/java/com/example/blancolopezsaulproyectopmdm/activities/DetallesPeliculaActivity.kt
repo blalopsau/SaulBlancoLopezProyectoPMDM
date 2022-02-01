@@ -65,10 +65,12 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         when(item.itemId){
             R.id.menu_borrar ->{
                 App.peliculas.remove(pelicula)
+
+
                 finish()
             }
             R.id.menu_llamar ->{
-                val numero: String = pelicula.tel
+                val numero: String? = pelicula.tel
                 if (!TextUtils.isEmpty(numero)) {
                     val dial = "tel:$numero"
                     startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(dial)))

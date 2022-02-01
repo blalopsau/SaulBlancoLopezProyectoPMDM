@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blancolopezsaulproyectopmdm.R
@@ -16,12 +15,9 @@ import com.example.blancolopezsaulproyectopmdm.activities.DetallesPeliculaActivi
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.squareup.picasso.Picasso
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
 import com.example.blancolopezsaulproyectopmdm.activities.EditarPeliculaActivity
-import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
-import kotlinx.coroutines.newFixedThreadPoolContext
 
-class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Context) :
+class PeliculasListAdapter(val listpeliculas: List<Pelicula>?, val context: Context) :
     RecyclerView.Adapter<PeliculasListAdapter.PeliculasViewHolder>() {
 
 
@@ -32,12 +28,12 @@ class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Conte
     }
 
     override fun onBindViewHolder(holder: PeliculasViewHolder, position: Int) {
-        val pelicula = listpeliculas.get(position)
+        val pelicula = listpeliculas?.get(position)
 
-        holder.tvTitulo.setText(pelicula.titulo)
-        holder.tvGenero.setText(pelicula.genero)
-        holder.tvDirector.setText(pelicula.director)
-        Picasso.get().load(pelicula.caratula).into(holder.ivCaratula)
+        holder.tvTitulo.setText(pelicula?.titulo)
+        holder.tvGenero.setText(pelicula?.genero)
+        holder.tvDirector.setText(pelicula?.director)
+        Picasso.get().load(pelicula?.caratula).into(holder.ivCaratula)
 
         holder.ivCardView.setOnClickListener {
             val adb = AlertDialog.Builder(context)
@@ -47,7 +43,7 @@ class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Conte
                 val intent = Intent(context, DetallesPeliculaActivity::class.java)
                 intent.putExtra("pelicula", pelicula)
                 context.startActivity(intent)
-                Log.d("Detalles","detalles")
+                Log.d("Detalles", "detalles")
             }
             adb.setNegativeButton("Editar la pelicula") { dialogInterface, i ->
                 val intent = Intent(context, EditarPeliculaActivity::class.java)
@@ -58,7 +54,9 @@ class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Conte
         }
     }
 
-    override fun getItemCount() = peliculas.size
+    override fun getItemCount(): Int {
+        return listpeliculas!!.size
+    }
 
     class PeliculasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitulo = itemView.findViewById<TextView>(R.id.tvTitulo)
@@ -68,3 +66,4 @@ class PeliculasListAdapter(val listpeliculas: List<Pelicula>, val context: Conte
         val ivCardView = itemView.findViewById<CardView>(R.id.ivCardView)
     }
 }
+

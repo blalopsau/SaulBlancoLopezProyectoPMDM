@@ -15,6 +15,7 @@ import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.PeliculasDaoMockImpl
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Token
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.User
 import retrofit2.Call
@@ -42,14 +43,9 @@ class PeliculasActivity : AppCompatActivity() {
             }
 
         requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-//        val peliculasDao = PeliculasDaoMockImpl()
-//        val listaPelicula = peliculasDao.getTodos()
-//
-//        val layoutManager = LinearLayoutManager(this)
-//        val adapter = PeliculasListAdapter(listaPelicula, this)
-//
-//        binding.rvListaPelis.adapter = adapter
-//        binding.rvListaPelis.layoutManager = layoutManager
+
+
+
 
         binding.fab.setOnClickListener {
             val intent = Intent(this, AnadirPeliculaActivity::class.java)
@@ -60,16 +56,17 @@ class PeliculasActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val context=this
+
         val token=pref.sacarToken()
 
-        val call: Call<Token> = RetrofitCliente.apiRetrofit.getAll("Bearer" + token) //Llamamos a Retrofit
+        val call = RetrofitCliente.apiRetrofit.getAll("Bearer" + token) //Llamamos a Retrofit
 
-        call.enqueue(object : Callback<Token> {
-            override fun onFailure(call: Call<Token>, t: Throwable) {
+        call.enqueue(object : Callback<List<Pelicula>> {
+            override fun onFailure(call: Call<List<Pelicula>>, t: Throwable) {
                 Log.d("respuesta: onFailure", t.toString())
             }
 
-            override fun onResponse(call: Call<Token>, response: Response<Token>) {
+            override fun onResponse(call: Call<List<Pelicula>>, response: Response<List<Pelicula>>) {
                 if (response.code() > 299 || response.code() < 200) {
                     val adb = AlertDialog.Builder(context)
                     adb.setIcon(R.drawable.outline_error_24)
@@ -78,12 +75,13 @@ class PeliculasActivity : AppCompatActivity() {
                     adb.setPositiveButton("Aceptar") { dialog, which -> }
                     adb.show()
                 } else {
-                    val adb = AlertDialog.Builder(context)
-                    adb.setIcon(R.drawable.outline_error_24)
-                    adb.setTitle("Lista de peliculas")
-                    adb.setMessage("La lista de películas no pudo cargarse correctamente")
-                    adb.setPositiveButton("Aceptar") { dialog, which -> }
-                    adb.show()
+                    val listaPelicula: List<Pelicula>? = response.body()
+
+                    val layoutManager = LinearLayoutManager(context)
+                    val adapter = PeliculasListAdapter(listaPelicula, context)
+
+                    binding.rvListaPelis.adapter = adapter
+                    binding.rvListaPelis.layoutManager = layoutManager
                 }
             }
         })
