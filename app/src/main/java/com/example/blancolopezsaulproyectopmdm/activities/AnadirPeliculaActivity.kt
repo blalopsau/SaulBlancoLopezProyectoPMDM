@@ -37,12 +37,6 @@ class AnadirPeliculaActivity : AppCompatActivity() {
         binding = ActivityAnadirPeliculaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btAnadirCaratula.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            intent.setType("image/*")
-            startActivityForResult(intent, SELECCIONADA)
-        }
-
         binding.btAnadirPelicula.setOnClickListener {
             val titulo = binding.etAnadirTitulo.text.toString()
             val genero = binding.etAnadirGenero.text.toString()
@@ -51,7 +45,7 @@ class AnadirPeliculaActivity : AppCompatActivity() {
             val plataforma = binding.etAnadirPlataforma.text.toString()
             val tiempo = binding.etAnadirTiempo.text.toString()
             val descripcion = binding.etAnadirDescripcion.text.toString()
-            val caratula = imageUri.toString()
+            val caratula = binding.etUrlImagen.text.toString()
             val tel = binding.etAnadirTelefono.text.toString()
 
             val pel = Pelicula(
@@ -75,6 +69,7 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                 adb.setPositiveButton("Aceptar") { dialog, which -> }
                 adb.show()
             } else {
+
                 val token=pref.sacarToken()
                 val call = RetrofitCliente.apiRetrofit.crear("Bearer" + token,pel)
 
@@ -99,13 +94,8 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                 })
             }
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == SELECCIONADA) {
-            imageUri = data?.data
-            Picasso.get().load(imageUri).into(binding.ivCaratulaAAdir)
+        binding.btPrevisualizar.setOnClickListener{
+            Picasso.get().load(binding.etUrlImagen.text.toString()).into(binding.ivCaratulaAAdir)
         }
     }
 }

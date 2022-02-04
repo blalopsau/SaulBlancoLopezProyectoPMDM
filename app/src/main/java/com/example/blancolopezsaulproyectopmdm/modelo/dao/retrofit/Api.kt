@@ -24,5 +24,8 @@ interface Api {
     fun delete(@Header("Authorization:") token: String,
                @Path("id") id:String):Call<Pelicula>
 
+    @GET("movies/{id}?")
+    fun getId(@Header("Authorization:") token: String,
+              @Path("id") id:String?):Call<Pelicula>
 
 }

@@ -72,30 +72,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/director3" />
 
-        <Button
-            android:id="@+id/btAnadirCaratula"
-            android:layout_width="@dimen/tamañoBotonG"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/espacioFotoBoton"
-            android:backgroundTint="@color/colorRojoNetflix"
-            android:text="@string/Sel_Imagen"
-            android:textSize="@dimen/tamañoBoton"
-            app:cornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivCaratulaAñadir" />
-
         <ImageView
             android:id="@+id/ivCaratulaAñadir"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_marginTop="@dimen/espacioFotoTexto"
-            android:layout_marginBottom="43dp"
-            app:layout_constraintBottom_toTopOf="@+id/etAnadirDescripcion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etAnadirTitulo"
-            app:layout_constraintVertical_bias="0.0"
             tools:ignore="ImageContrastCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -176,7 +160,7 @@
             android:id="@+id/etAnadirDescripcion"
             android:layout_width="0dp"
             android:layout_height="400dp"
-            android:layout_marginTop="@dimen/espacioTextoBoton"
+            android:layout_marginTop="28dp"
             android:backgroundTint="@color/black"
             android:cursorVisible="true"
             android:elegantTextHeight="true"
@@ -190,7 +174,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btAnadirCaratula" />
+            app:layout_constraintTop_toBottomOf="@+id/etUrlImagen" />
 
         <EditText
             android:id="@+id/etAnadirPlataforma"
@@ -268,6 +252,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etAnadirTelefono" />
+
+        <EditText
+            android:id="@+id/etUrlImagen"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Url imagen"
+            android:inputType="textUri"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCaratulaAñadir" />
+
+        <Button
+            android:id="@+id/btPrevisualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="Cargar Imagen"
+            app:layout_constraintBottom_toBottomOf="@+id/etUrlImagen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/etUrlImagen"
+            app:layout_constraintTop_toTopOf="@+id/etUrlImagen" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

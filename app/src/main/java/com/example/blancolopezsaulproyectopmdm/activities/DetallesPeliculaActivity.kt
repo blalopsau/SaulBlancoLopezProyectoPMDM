@@ -17,16 +17,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
-import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
-import com.example.blancolopezsaulproyectopmdm.modelo.entities.Token
-import com.example.blancolopezsaulproyectopmdm.modelo.entities.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.jar.Manifest
+
 
 class DetallesPeliculaActivity : AppCompatActivity() {
 
@@ -42,7 +38,41 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         binding = ActivityDetallesPeliculaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         pref = Preferences(applicationContext)
-        pelicula = intent.extras?.get("pelicula") as Pelicula
+        val id = intent.extras?.get("id") as String?
+
+        val token=pref.sacarToken()
+        val call = RetrofitCliente.apiRetrofit.getId("Bearer" + token,id)
+
+        call.enqueue(object : Callback<Pelicula> {
+            override fun onFailure(call: Call<Pelicula>, t: Throwable) {
+                Log.d("respuesta: onFailure", t.toString())
+            }
+
+            override fun onResponse(call: Call<Pelicula>, response: Response<Pelicula>) {
+                if (response.code() > 299 || response.code() < 200) {
+                    val adb = AlertDialog.Builder(applicationContext)
+                    adb.setIcon(R.drawable.outline_error_24)
+                    adb.setTitle("Error en el borrado")
+                    adb.setMessage("La película no pudo eliminarse correctamente")
+                    adb.setPositiveButton("Aceptar") { dialog, which -> }
+                    adb.show()
+                } else {
+                   val titulo=response.body()?.titulo.toString()
+                    val caratula=response.body()?.caratula.toString()
+                    val descripcion=response.body()?.descripcion.toString()
+                    val director=response.body()?.director.toString()
+                    val genero=response.body()?.genero.toString()
+                    val nota=response.body()?.nota.toString()
+                    val plataforma=response.body()?.plataforma.toString()
+                    val tel=response.body()?.tel.toString()
+                    val tiempo=response.body()?.tiempo.toString()
+
+                    pelicula= Pelicula(null,titulo,genero, director, nota, plataforma, tiempo, descripcion, caratula, tel)
+
+                    Toast.makeText(applicationContext, "Pelicula obtenida all right", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
 
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaDetalle)
         binding.tvTituloDetalle.text = pelicula.titulo
@@ -71,7 +101,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
 
                 val token=pref.sacarToken()
 
-                val call = RetrofitCliente.apiRetrofit.delete("Bearer" + token,pelicula.id) //Llamamos a Retrofit
+                val call = RetrofitCliente.apiRetrofit.delete("Bearer" + token,pelicula.id!!) //Llamamos a Retrofit
 
                 call.enqueue(object : Callback<Pelicula> {
                     override fun onFailure(call: Call<Pelicula>, t: Throwable) {

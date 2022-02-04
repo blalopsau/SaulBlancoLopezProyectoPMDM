@@ -41,13 +41,13 @@ class PeliculasListAdapter(val listpeliculas: List<Pelicula>?, val context: Cont
             adb.setMessage("Que quieres hacer con la película?")
             adb.setPositiveButton("Ver detalles de la pelicula") { dialogInterface, i ->
                 val intent = Intent(context, DetallesPeliculaActivity::class.java)
-                intent.putExtra("pelicula", pelicula)
+                intent.putExtra("id", pelicula?.id)
                 context.startActivity(intent)
                 Log.d("Detalles", "detalles")
             }
             adb.setNegativeButton("Editar la pelicula") { dialogInterface, i ->
                 val intent = Intent(context, EditarPeliculaActivity::class.java)
-                intent.putExtra("pelicula", pelicula)
+                intent.putExtra("id", pelicula?.id)
                 context.startActivity(intent)
             }
             adb.show()
