@@ -16,7 +16,13 @@ interface Api {
     @POST("users/login")
     fun login(@Body user: User): Call<Token>
 
-    @DELETE("movies")
+    @POST("movies")
+    fun crear(@Header("Authorization:") token: String,
+               @Body pelicula: Pelicula): Call<Unit>
+
+    @DELETE("movies/{id}")
     fun delete(@Header("Authorization:") token: String,
-    @Body pelicula: Pelicula): Call<Unit>
+               @Path("id") id:String):Call<Pelicula>
+
+
 }

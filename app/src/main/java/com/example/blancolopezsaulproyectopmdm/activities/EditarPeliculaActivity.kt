@@ -11,7 +11,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
 import com.squareup.picasso.Picasso
 import java.util.jar.Manifest
 
@@ -51,7 +50,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
         }
 
         binding.btEditar.setOnClickListener {
-            peliculas.remove(pelicula)
+           // peliculas.remove(pelicula)
 
             val titulo = binding.etAnadirTitulo.text.toString()
             val genero = binding.etGenero.text.toString()
@@ -64,8 +63,8 @@ class EditarPeliculaActivity : AppCompatActivity() {
             val tel = binding.etTelefonoEditar.toString()
             Log.d("url imagen", caratula)
 
-            val pel = Pelicula(titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
-            peliculas.add(pel)
+            val pel = Pelicula("",titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
+           // peliculas.add(pel)
             finish()
         }
     }

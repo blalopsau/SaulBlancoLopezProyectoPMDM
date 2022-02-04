@@ -8,16 +8,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.blancolopezsaulproyectopmdm.modelo.dao.App
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
 import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityPeliculasBinding
-import com.example.blancolopezsaulproyectopmdm.modelo.dao.PeliculasDaoMockImpl
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
-import com.example.blancolopezsaulproyectopmdm.modelo.entities.Token
-import com.example.blancolopezsaulproyectopmdm.modelo.entities.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,9 +39,6 @@ class PeliculasActivity : AppCompatActivity() {
             }
 
         requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-
-
-
 
         binding.fab.setOnClickListener {
             val intent = Intent(this, AnadirPeliculaActivity::class.java)

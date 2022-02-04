@@ -7,38 +7,41 @@ import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityDetallesPeliculaBinding
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.squareup.picasso.Picasso
-import android.text.method.ScrollingMovementMethod
 import android.graphics.Color
 import androidx.core.graphics.drawable.DrawableCompat
 import android.graphics.drawable.Drawable
-import android.media.MediaPlayer
 import android.net.Uri
-import android.provider.ContactsContract
-import android.provider.MediaStore
 import android.text.TextUtils
-import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import com.example.blancolopezsaulproyectopmdm.modelo.dao.App
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
+import com.example.blancolopezsaulproyectopmdm.adapters.PeliculasListAdapter
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.Token
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.jar.Manifest
 
 class DetallesPeliculaActivity : AppCompatActivity() {
 
     private lateinit var pelicula: Pelicula
-
     private lateinit var binding: ActivityDetallesPeliculaBinding
+    private lateinit var pref: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalles_pelicula)
 
+
         binding = ActivityDetallesPeliculaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        pref = Preferences(applicationContext)
         pelicula = intent.extras?.get("pelicula") as Pelicula
 
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaDetalle)
@@ -62,14 +65,35 @@ class DetallesPeliculaActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.menu_borrar ->{
-                App.peliculas.remove(pelicula)
+        when (item.itemId) {
+            R.id.menu_borrar -> {
+                val context=this
 
+                val token=pref.sacarToken()
 
-                finish()
+                val call = RetrofitCliente.apiRetrofit.delete("Bearer" + token,pelicula.id) //Llamamos a Retrofit
+
+                call.enqueue(object : Callback<Pelicula> {
+                    override fun onFailure(call: Call<Pelicula>, t: Throwable) {
+                        Log.d("respuesta: onFailure", t.toString())
+                    }
+
+                    override fun onResponse(call: Call<Pelicula>, response: Response<Pelicula>) {
+                        if (response.code() > 299 || response.code() < 200) {
+                            val adb = AlertDialog.Builder(context)
+                            adb.setIcon(R.drawable.outline_error_24)
+                            adb.setTitle("Error en el borrado")
+                            adb.setMessage("La película no pudo eliminarse correctamente")
+                            adb.setPositiveButton("Aceptar") { dialog, which -> }
+                            adb.show()
+                        }else{
+                            Toast.makeText(context,"La pelicula ha sido eliminada correctamente",Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    }
+                })
             }
-            R.id.menu_llamar ->{
+            R.id.menu_llamar -> {
                 val numero: String? = pelicula.tel
                 if (!TextUtils.isEmpty(numero)) {
                     val dial = "tel:$numero"

@@ -5,12 +5,19 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.blancolopezsaulproyectopmdm.modelo.dao.App.Companion.peliculas
 import com.example.blancolopezsaulproyectopmdm.R
+import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityAnadirPeliculaBinding
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
+import com.example.blancolopezsaulproyectopmdm.modelo.entities.Token
 import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -19,10 +26,11 @@ class AnadirPeliculaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAnadirPeliculaBinding
     private val SELECCIONADA = 100
     var imageUri: Uri? = null
-    private val TIEMPO_PATTERN = "^[0-9]+h+\\s+[0-9]+[0-9]+min"
+
+    private lateinit var pref: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        pref = Preferences(applicationContext)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anadir_pelicula)
 
@@ -36,7 +44,6 @@ class AnadirPeliculaActivity : AppCompatActivity() {
         }
 
         binding.btAnadirPelicula.setOnClickListener {
-
             val titulo = binding.etAnadirTitulo.text.toString()
             val genero = binding.etAnadirGenero.text.toString()
             val director = binding.etAnadirDirector.text.toString()
@@ -48,6 +55,7 @@ class AnadirPeliculaActivity : AppCompatActivity() {
             val tel = binding.etAnadirTelefono.text.toString()
 
             val pel = Pelicula(
+                null,
                 titulo,
                 genero,
                 director,
@@ -59,12 +67,6 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                 tel
             )
 
-            //Patrones para el tiempo de la película
-            val patTiempo: Pattern = Pattern.compile(TIEMPO_PATTERN)
-            val matTiempo: Matcher = patTiempo.matcher(tiempo)
-
-
-
             if (titulo == "" || genero == "" || director == "" || nota == "" || plataforma == "" || tiempo == "" || descripcion == "" || tel == "") {
                 val adb = AlertDialog.Builder(this)
                 adb.setIcon(R.drawable.outline_error_24)
@@ -72,16 +74,29 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                 adb.setMessage("Algún campo está vacio, porfavor rellene todos los campos")
                 adb.setPositiveButton("Aceptar") { dialog, which -> }
                 adb.show()
-            } else if (!matTiempo.matches()) {
-                val adb = AlertDialog.Builder(this)
-                adb.setIcon(R.drawable.outline_error_24)
-                adb.setTitle("Tiempo Incorrecto")
-                adb.setMessage("La duración de la película no cumple el patrón \"0h 00min\" ")
-                adb.setPositiveButton("Aceptar") { dialog, which -> }
-                adb.show()
             } else {
-                peliculas.add(pel)
-                finish()
+                val token=pref.sacarToken()
+                val call = RetrofitCliente.apiRetrofit.crear("Bearer" + token,pel)
+
+                call.enqueue(object : Callback<Unit> {
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        Log.d("respuesta: onFailure", t.toString())
+                    }
+
+                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                        if (response.code() > 299 || response.code() < 200) {
+                            val adb = AlertDialog.Builder(applicationContext)
+                            adb.setIcon(R.drawable.outline_error_24)
+                            adb.setTitle("Error en el borrado")
+                            adb.setMessage("La película no pudo eliminarse correctamente")
+                            adb.setPositiveButton("Aceptar") { dialog, which -> }
+                            adb.show()
+                        } else {
+                            Toast.makeText(applicationContext, "La pelicula ha sido creada correctamente", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    }
+                })
             }
         }
     }
