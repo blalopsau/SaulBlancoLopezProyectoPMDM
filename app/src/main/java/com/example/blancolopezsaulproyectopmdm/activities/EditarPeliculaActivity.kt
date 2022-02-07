@@ -86,7 +86,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
             val caratula=binding.etUrlImagenEditar.text.toString()
             val tel=binding.etTelefonoEditar.text.toString()
 
-            pelicula = Pelicula(null,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
+            pelicula = Pelicula(id,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
 
             val call = RetrofitCliente.apiRetrofit.editar("Bearer " + token,pelicula)
             call.enqueue(object : Callback<Pelicula> {
