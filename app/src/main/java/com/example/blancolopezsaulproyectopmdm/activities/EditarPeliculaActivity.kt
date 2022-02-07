@@ -86,7 +86,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
             val caratula=binding.etUrlImagenEditar.text.toString()
             val tel=binding.etTelefonoEditar.text.toString()
 
-            pelicula = Pelicula(null,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
+            pelicula = Pelicula(id,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
 
             val call = RetrofitCliente.apiRetrofit.editar("Bearer " + token,pelicula)
             call.enqueue(object : Callback<Pelicula> {
@@ -100,6 +100,13 @@ class EditarPeliculaActivity : AppCompatActivity() {
                         adb.setIcon(R.drawable.outline_error_24)
                         adb.setTitle("Error en la recuperación de la película")
                         adb.setMessage("La película no pudo recuperarse correctamente")
+                        adb.setPositiveButton("Aceptar") { dialog, which -> }
+                        adb.show()
+                    }else if(response.code() ==401 || response.code() ==500){
+                        val adb = AlertDialog.Builder(context)
+                        adb.setIcon(R.drawable.outline_error_24)
+                        adb.setTitle("Inicio de sesión caducado")
+                        adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
                         adb.setPositiveButton("Aceptar") { dialog, which -> }
                         adb.show()
                     } else {
@@ -127,6 +134,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
         binding.etGenero.setText(pelicula.genero)
         binding.etPlataforma.setText(pelicula.plataforma)
         binding.etDirectorDetalle.setText(pelicula.director)
+        binding.etUrlImagenEditar.setText(pelicula.caratula)
         binding.etTiempo.setText(pelicula.tiempo)
         binding.etTelefonoEditar.setText(pelicula.tel)
     }

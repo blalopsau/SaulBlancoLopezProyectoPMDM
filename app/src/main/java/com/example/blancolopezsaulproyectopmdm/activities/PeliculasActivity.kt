@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -30,17 +31,22 @@ class PeliculasActivity : AppCompatActivity() {
         binding = ActivityPeliculasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        pref=Preferences(applicationContext)
+        pref = Preferences(applicationContext)
 
-        val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { tengoPermiso: Boolean ->
+        val requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { tengoPermiso: Boolean ->
                 if (!tengoPermiso) {
-                    ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1)
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                        1
+                    )
                 }
             }
 
         requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
 
-        binding.fab.setOnClickListener {
+        binding.rvListaPeliculasInclude.fab.setOnClickListener {
             val intent = Intent(this, AnadirPeliculaActivity::class.java)
             startActivity(intent)
         }
@@ -48,23 +54,43 @@ class PeliculasActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val context=this
+        val context = this
 
-        val token=pref.sacarToken()
+        val token = pref.sacarToken()
 
         val call = RetrofitCliente.apiRetrofit.getAll("Bearer" + token) //Llamamos a Retrofit
+
+        binding.rvListaPeliculasInclude.layoutListaPeliculas.visibility=View.GONE
+        binding.rvCargaInclude.layoutCarga.visibility=View.VISIBLE
 
         call.enqueue(object : Callback<List<Pelicula>> {
             override fun onFailure(call: Call<List<Pelicula>>, t: Throwable) {
                 Log.d("respuesta: onFailure", t.toString())
+
+                binding.rvListaPeliculasInclude.layoutListaPeliculas.visibility=View.VISIBLE
+                binding.rvCargaInclude.layoutCarga.visibility=View.GONE
+
             }
 
-            override fun onResponse(call: Call<List<Pelicula>>, response: Response<List<Pelicula>>) {
+            override fun onResponse(
+                call: Call<List<Pelicula>>,
+                response: Response<List<Pelicula>>
+            ) {
+                binding.rvListaPeliculasInclude.layoutListaPeliculas.visibility=View.VISIBLE
+                binding.rvCargaInclude.layoutCarga.visibility=View.GONE
+
                 if (response.code() > 299 || response.code() < 200) {
                     val adb = AlertDialog.Builder(context)
                     adb.setIcon(R.drawable.outline_error_24)
                     adb.setTitle("Lista de peliculas")
                     adb.setMessage("La lista de películas no pudo cargarse correctamente")
+                    adb.setPositiveButton("Aceptar") { dialog, which -> }
+                    adb.show()
+                } else if (response.code() == 401 || response.code() == 500) {
+                    val adb = AlertDialog.Builder(context)
+                    adb.setIcon(R.drawable.outline_error_24)
+                    adb.setTitle("Inicio de sesión caducado")
+                    adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
                     adb.setPositiveButton("Aceptar") { dialog, which -> }
                     adb.show()
                 } else {
@@ -73,8 +99,8 @@ class PeliculasActivity : AppCompatActivity() {
                     val layoutManager = LinearLayoutManager(context)
                     val adapter = PeliculasListAdapter(listaPelicula, context)
 
-                    binding.rvListaPelis.adapter = adapter
-                    binding.rvListaPelis.layoutManager = layoutManager
+                    binding.rvListaPeliculasInclude.rvListaPeliculas.adapter = adapter
+                    binding.rvListaPeliculasInclude.rvListaPeliculas.layoutManager = layoutManager
                 }
             }
         })

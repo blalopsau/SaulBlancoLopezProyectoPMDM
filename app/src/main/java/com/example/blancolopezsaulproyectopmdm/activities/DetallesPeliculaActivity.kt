@@ -121,6 +121,13 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                             adb.setMessage("La película no pudo eliminarse correctamente")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
+                        }else if(response.code() ==401 || response.code() ==500){
+                            val adb = AlertDialog.Builder(context)
+                            adb.setIcon(R.drawable.outline_error_24)
+                            adb.setTitle("Inicio de sesión caducado")
+                            adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
+                            adb.setPositiveButton("Aceptar") { dialog, which -> }
+                            adb.show()
                         } else {
                             Toast.makeText(
                                 context,

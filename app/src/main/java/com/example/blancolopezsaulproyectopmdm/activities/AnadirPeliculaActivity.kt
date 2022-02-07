@@ -25,7 +25,7 @@ class AnadirPeliculaActivity : AppCompatActivity() {
         pref = Preferences(applicationContext)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anadir_pelicula)
-
+        val context = this
         binding = ActivityAnadirPeliculaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -53,18 +53,17 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                 tel
             )
 
-            if (titulo == "" || genero == "" || director == "" || nota == "" || plataforma == "" || tiempo == "" || descripcion == "" || tel == "" || caratula=="") {
+            if (titulo == "" || genero == "" || director == "" || nota == "" || plataforma == "" || tiempo == "" || descripcion == "" || tel == "" || caratula == "") {
                 val adb = AlertDialog.Builder(this)
                 adb.setIcon(R.drawable.outline_error_24)
                 adb.setTitle("Campos vacios")
                 adb.setMessage("Algún campo está vacio, porfavor rellene todos los campos")
                 adb.setPositiveButton("Aceptar") { dialog, which -> }
                 adb.show()
-            }
-            else{
+            } else {
 
-                val token=pref.sacarToken()
-                val call = RetrofitCliente.apiRetrofit.crear("Bearer" + token,pel)
+                val token = pref.sacarToken()
+                val call = RetrofitCliente.apiRetrofit.crear("Bearer" + token, pel)
 
                 call.enqueue(object : Callback<Unit> {
                     override fun onFailure(call: Call<Unit>, t: Throwable) {
@@ -79,15 +78,26 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                             adb.setMessage("La película no pudo crearse correctamente")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
+                        } else if (response.code() == 401 || response.code() == 500) {
+                            val adb = AlertDialog.Builder(context)
+                            adb.setIcon(R.drawable.outline_error_24)
+                            adb.setTitle("Inicio de sesión caducado")
+                            adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
+                            adb.setPositiveButton("Aceptar") { dialog, which -> }
+                            adb.show()
                         } else {
-                            Toast.makeText(applicationContext, "La pelicula ha sido creada correctamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                applicationContext,
+                                "La pelicula ha sido creada correctamente",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             finish()
                         }
                     }
                 })
             }
         }
-        binding.btPrevisualizar.setOnClickListener{
+        binding.btPrevisualizar.setOnClickListener {
             Picasso.get().load(binding.etUrlImagen.text.toString()).into(binding.ivCaratulaAAdir)
         }
     }
