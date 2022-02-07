@@ -1,10 +1,7 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -13,19 +10,14 @@ import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
 import com.example.blancolopezsaulproyectopmdm.databinding.ActivityAnadirPeliculaBinding
 import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
-import com.example.blancolopezsaulproyectopmdm.modelo.entities.Token
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 class AnadirPeliculaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAnadirPeliculaBinding
-    private val SELECCIONADA = 100
-    var imageUri: Uri? = null
 
     private lateinit var pref: Preferences
 
@@ -61,14 +53,15 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                 tel
             )
 
-            if (titulo == "" || genero == "" || director == "" || nota == "" || plataforma == "" || tiempo == "" || descripcion == "" || tel == "") {
+            if (titulo == "" || genero == "" || director == "" || nota == "" || plataforma == "" || tiempo == "" || descripcion == "" || tel == "" || caratula=="") {
                 val adb = AlertDialog.Builder(this)
                 adb.setIcon(R.drawable.outline_error_24)
                 adb.setTitle("Campos vacios")
                 adb.setMessage("Algún campo está vacio, porfavor rellene todos los campos")
                 adb.setPositiveButton("Aceptar") { dialog, which -> }
                 adb.show()
-            } else {
+            }
+            else{
 
                 val token=pref.sacarToken()
                 val call = RetrofitCliente.apiRetrofit.crear("Bearer" + token,pel)
@@ -82,8 +75,8 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                         if (response.code() > 299 || response.code() < 200) {
                             val adb = AlertDialog.Builder(applicationContext)
                             adb.setIcon(R.drawable.outline_error_24)
-                            adb.setTitle("Error en el borrado")
-                            adb.setMessage("La película no pudo eliminarse correctamente")
+                            adb.setTitle("Error en el creado")
+                            adb.setMessage("La película no pudo crearse correctamente")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
                         } else {

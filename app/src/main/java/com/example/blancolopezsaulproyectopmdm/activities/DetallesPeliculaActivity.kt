@@ -37,11 +37,12 @@ class DetallesPeliculaActivity : AppCompatActivity() {
 
         binding = ActivityDetallesPeliculaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        pref = Preferences(applicationContext)
-        val id = intent.extras?.get("id") as String?
 
-        val token=pref.sacarToken()
-        val call = RetrofitCliente.apiRetrofit.getId("Bearer" + token,id)
+        pref = Preferences(applicationContext)
+
+        val id = intent.extras?.get("id") as String?
+        val token = pref.sacarToken()
+        val call = RetrofitCliente.apiRetrofit.getId("Bearer" + token, id)
 
         call.enqueue(object : Callback<Pelicula> {
             override fun onFailure(call: Call<Pelicula>, t: Throwable) {
@@ -57,23 +58,26 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                     adb.setPositiveButton("Aceptar") { dialog, which -> }
                     adb.show()
                 } else {
-                   val titulo=response.body()?.titulo.toString()
-                    val caratula=response.body()?.caratula.toString()
-                    val descripcion=response.body()?.descripcion.toString()
-                    val director=response.body()?.director.toString()
-                    val genero=response.body()?.genero.toString()
-                    val nota=response.body()?.nota.toString()
-                    val plataforma=response.body()?.plataforma.toString()
-                    val tel=response.body()?.tel.toString()
-                    val tiempo=response.body()?.tiempo.toString()
+                    val titulo = response.body()?.titulo.toString()
+                    val caratula = response.body()?.caratula.toString()
+                    val descripcion = response.body()?.descripcion.toString()
+                    val director = response.body()?.director.toString()
+                    val genero = response.body()?.genero.toString()
+                    val nota = response.body()?.nota.toString()
+                    val plataforma = response.body()?.plataforma.toString()
+                    val tel = response.body()?.tel.toString()
+                    val tiempo = response.body()?.tiempo.toString()
 
-                    pelicula= Pelicula(null,titulo,genero, director, nota, plataforma, tiempo, descripcion, caratula, tel)
+                    pelicula = Pelicula(null,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
 
-                    Toast.makeText(applicationContext, "Pelicula obtenida all right", Toast.LENGTH_SHORT).show()
+                    rellenarDatos()
                 }
             }
         })
+    }
 
+    fun rellenarDatos() {
+        Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaDetalle)
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaDetalle)
         binding.tvTituloDetalle.text = pelicula.titulo
         binding.tvDescripcionDetalle.text = pelicula.descripcion
@@ -97,10 +101,11 @@ class DetallesPeliculaActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_borrar -> {
-                val context=this
+                val context = this
 
-                val token=pref.sacarToken()
-
+                val token = pref.sacarToken()
+                val id = intent.extras?.get("id") as String?
+                pelicula.id=id
                 val call = RetrofitCliente.apiRetrofit.delete("Bearer" + token,pelicula.id!!) //Llamamos a Retrofit
 
                 call.enqueue(object : Callback<Pelicula> {
@@ -116,8 +121,12 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                             adb.setMessage("La película no pudo eliminarse correctamente")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
-                        }else{
-                            Toast.makeText(context,"La pelicula ha sido eliminada correctamente",Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "La pelicula ha sido eliminada correctamente",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             finish()
                         }
                     }
