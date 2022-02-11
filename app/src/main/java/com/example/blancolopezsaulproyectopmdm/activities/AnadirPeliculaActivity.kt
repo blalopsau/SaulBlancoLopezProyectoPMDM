@@ -85,6 +85,7 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                             adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
+                            pref.guardar("")
                         } else {
                             Toast.makeText(
                                 applicationContext,

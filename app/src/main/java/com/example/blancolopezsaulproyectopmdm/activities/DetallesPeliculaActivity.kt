@@ -57,6 +57,8 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                     adb.setMessage("La película no pudo eliminarse correctamente")
                     adb.setPositiveButton("Aceptar") { dialog, which -> }
                     adb.show()
+                } else if (response.code() == 401) {
+                    pref.guardar("")
                 } else {
                     val titulo = response.body()?.titulo.toString()
                     val caratula = response.body()?.caratula.toString()
@@ -68,7 +70,18 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                     val tel = response.body()?.tel.toString()
                     val tiempo = response.body()?.tiempo.toString()
 
-                    pelicula = Pelicula(null,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
+                    pelicula = Pelicula(
+                        null,
+                        titulo,
+                        genero,
+                        director,
+                        nota,
+                        plataforma,
+                        tiempo,
+                        descripcion,
+                        caratula,
+                        tel
+                    )
 
                     rellenarDatos()
                 }
@@ -105,8 +118,11 @@ class DetallesPeliculaActivity : AppCompatActivity() {
 
                 val token = pref.sacarToken()
                 val id = intent.extras?.get("id") as String?
-                pelicula.id=id
-                val call = RetrofitCliente.apiRetrofit.delete("Bearer" + token,pelicula.id!!) //Llamamos a Retrofit
+                pelicula.id = id
+                val call = RetrofitCliente.apiRetrofit.delete(
+                    "Bearer" + token,
+                    pelicula.id!!
+                ) //Llamamos a Retrofit
 
                 call.enqueue(object : Callback<Pelicula> {
                     override fun onFailure(call: Call<Pelicula>, t: Throwable) {
@@ -121,13 +137,14 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                             adb.setMessage("La película no pudo eliminarse correctamente")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
-                        }else if(response.code() ==401 || response.code() ==500){
+                        } else if (response.code() == 401 || response.code() == 500) {
                             val adb = AlertDialog.Builder(context)
                             adb.setIcon(R.drawable.outline_error_24)
                             adb.setTitle("Inicio de sesión caducado")
                             adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
+                            pref.guardar("")
                         } else {
                             Toast.makeText(
                                 context,

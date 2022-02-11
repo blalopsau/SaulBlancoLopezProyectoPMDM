@@ -31,7 +31,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditarPeliculaBinding
     private lateinit var pref: Preferences
 
-    val context=this
+    val context = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_pelicula)
@@ -58,6 +58,8 @@ class EditarPeliculaActivity : AppCompatActivity() {
                     adb.setMessage("La película no pudo recuperarse correctamente")
                     adb.setPositiveButton("Aceptar") { dialog, which -> }
                     adb.show()
+                } else if (response.code() == 401) {
+                    pref.guardar("")
                 } else {
                     val titulo = response.body()?.titulo.toString()
                     val caratula = response.body()?.caratula.toString()
@@ -69,26 +71,48 @@ class EditarPeliculaActivity : AppCompatActivity() {
                     val tel = response.body()?.tel.toString()
                     val tiempo = response.body()?.tiempo.toString()
 
-                    pelicula = Pelicula(null,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
+                    pelicula = Pelicula(
+                        null,
+                        titulo,
+                        genero,
+                        director,
+                        nota,
+                        plataforma,
+                        tiempo,
+                        descripcion,
+                        caratula,
+                        tel
+                    )
                     rellenarDatos()
                 }
             }
         })
 
-        binding.btEditar.setOnClickListener{
-            val titulo=binding.etAnadirTitulo.text.toString()
-            val genero=binding.etGenero.text.toString()
-            val director=binding.etDirectorDetalle.text.toString()
-            val nota=binding.etNotaDetalle.text.toString()
-            val plataforma=binding.etPlataforma.text.toString()
-            val tiempo=binding.etTiempo.text.toString()
-            val descripcion=binding.etDescripcion.text.toString()
-            val caratula=binding.etUrlImagenEditar.text.toString()
-            val tel=binding.etTelefonoEditar.text.toString()
+        binding.btEditar.setOnClickListener {
+            val titulo = binding.etAnadirTitulo.text.toString()
+            val genero = binding.etGenero.text.toString()
+            val director = binding.etDirectorDetalle.text.toString()
+            val nota = binding.etNotaDetalle.text.toString()
+            val plataforma = binding.etPlataforma.text.toString()
+            val tiempo = binding.etTiempo.text.toString()
+            val descripcion = binding.etDescripcion.text.toString()
+            val caratula = binding.etUrlImagenEditar.text.toString()
+            val tel = binding.etTelefonoEditar.text.toString()
 
-            pelicula = Pelicula(id,titulo,genero,director,nota,plataforma,tiempo,descripcion,caratula,tel)
+            pelicula = Pelicula(
+                id,
+                titulo,
+                genero,
+                director,
+                nota,
+                plataforma,
+                tiempo,
+                descripcion,
+                caratula,
+                tel
+            )
 
-            val call = RetrofitCliente.apiRetrofit.editar("Bearer " + token,pelicula)
+            val call = RetrofitCliente.apiRetrofit.editar("Bearer " + token, pelicula)
             call.enqueue(object : Callback<Pelicula> {
                 override fun onFailure(call: Call<Pelicula>, t: Throwable) {
                     Log.d("respuesta: onFailure", t.toString())
@@ -102,7 +126,7 @@ class EditarPeliculaActivity : AppCompatActivity() {
                         adb.setMessage("La película no pudo recuperarse correctamente")
                         adb.setPositiveButton("Aceptar") { dialog, which -> }
                         adb.show()
-                    }else if(response.code() ==401 || response.code() ==500){
+                    } else if (response.code() == 401 || response.code() == 500) {
                         val adb = AlertDialog.Builder(context)
                         adb.setIcon(R.drawable.outline_error_24)
                         adb.setTitle("Inicio de sesión caducado")
@@ -121,15 +145,16 @@ class EditarPeliculaActivity : AppCompatActivity() {
                 }
             })
         }
-        binding.btPrevisualizarFoto.setOnClickListener{
-            Picasso.get().load(binding.etUrlImagenEditar.text.toString()).into(binding.ivCaratulaEditar)
+        binding.btPrevisualizarFoto.setOnClickListener {
+            Picasso.get().load(binding.etUrlImagenEditar.text.toString())
+                .into(binding.ivCaratulaEditar)
         }
     }
 
     fun rellenarDatos() {
         Picasso.get().load(pelicula.caratula).into(binding.ivCaratulaEditar)
         binding.etAnadirTitulo.setText(pelicula.titulo)
-        binding.etDescripcion.setText( pelicula.descripcion)
+        binding.etDescripcion.setText(pelicula.descripcion)
         binding.etNotaDetalle.setText(pelicula.nota)
         binding.etGenero.setText(pelicula.genero)
         binding.etPlataforma.setText(pelicula.plataforma)
