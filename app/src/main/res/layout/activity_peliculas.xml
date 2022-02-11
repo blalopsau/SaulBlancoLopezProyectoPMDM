@@ -12,10 +12,11 @@
 
     <include
         android:id="@+id/rvListaPeliculasInclude"
-        layout="@layout/layout_lista_peliculas" />
+        layout="@layout/layout_lista_peliculas"
+        android:visibility="gone" />
 
     <include
         android:id="@+id/rvCargaInclude"
         layout="@layout/layout_carga"
-        android:visibility="gone" />
+        />
 </FrameLayout>

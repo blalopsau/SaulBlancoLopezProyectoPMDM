@@ -29,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        if (pref.sacarToken()!=null){
+            val intent = Intent(this, PeliculasActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.btCrearCuenta.setOnClickListener {//Cuando se pulsa el boton crear se va a la pantalla CrearcuentaActivity
             val intent = Intent(this, CrearcuentaActivity::class.java)
@@ -66,7 +69,10 @@ class MainActivity : AppCompatActivity() {
                             adb.setMessage("El usuario o la contraseña no coinciden con ningún usuario")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
-                        } else {
+                        }else if (response.code() == 401){
+                            pref.guardar("")
+                        }
+                        else {
                             val token = response.body()?.token.toString()
                             pref.guardar(token)
                             val intent = Intent(context, PeliculasActivity::class.java)

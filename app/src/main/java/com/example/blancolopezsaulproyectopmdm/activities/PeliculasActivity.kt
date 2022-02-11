@@ -33,8 +33,7 @@ class PeliculasActivity : AppCompatActivity() {
 
         pref = Preferences(applicationContext)
 
-        val requestPermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { tengoPermiso: Boolean ->
+        val requestPermissionLauncher =registerForActivityResult(ActivityResultContracts.RequestPermission()) { tengoPermiso: Boolean ->
                 if (!tengoPermiso) {
                     ActivityCompat.requestPermissions(
                         this,
@@ -60,17 +59,10 @@ class PeliculasActivity : AppCompatActivity() {
 
         val call = RetrofitCliente.apiRetrofit.getAll("Bearer" + token) //Llamamos a Retrofit
 
-        binding.rvListaPeliculasInclude.layoutListaPeliculas.visibility=View.GONE
-        binding.rvCargaInclude.layoutCarga.visibility=View.VISIBLE
-
         call.enqueue(object : Callback<List<Pelicula>> {
             override fun onFailure(call: Call<List<Pelicula>>, t: Throwable) {
                 Log.d("respuesta: onFailure", t.toString())
-
-                binding.rvListaPeliculasInclude.layoutListaPeliculas.visibility=View.VISIBLE
-                binding.rvCargaInclude.layoutCarga.visibility=View.GONE
-
-            }
+}
 
             override fun onResponse(
                 call: Call<List<Pelicula>>,
