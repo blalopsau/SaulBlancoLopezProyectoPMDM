@@ -3,9 +3,7 @@ package com.example.blancolopezsaulproyectopmdm.adapters
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -16,10 +14,11 @@ import com.example.blancolopezsaulproyectopmdm.modelo.entities.Pelicula
 import com.squareup.picasso.Picasso
 import androidx.appcompat.app.AlertDialog
 import com.example.blancolopezsaulproyectopmdm.activities.EditarPeliculaActivity
+import com.example.blancolopezsaulproyectopmdm.activities.MainActivity
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 
-class PeliculasListAdapter(val listpeliculas: List<Pelicula>?, val context: Context) :
-    RecyclerView.Adapter<PeliculasListAdapter.PeliculasViewHolder>() {
 
+class PeliculasListAdapter(val listpeliculas: List<Pelicula>?, val context: Context) :   RecyclerView.Adapter<PeliculasListAdapter.PeliculasViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeliculasViewHolder {
         val layoutInflater =
@@ -65,5 +64,6 @@ class PeliculasListAdapter(val listpeliculas: List<Pelicula>?, val context: Cont
         val ivCaratula = itemView.findViewById<ImageView>(R.id.ivCaratula)
         val ivCardView = itemView.findViewById<CardView>(R.id.ivCardView)
     }
+
 }
 
