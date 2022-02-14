@@ -14,5 +14,4 @@ data class Pelicula(
     @SerializedName("description")var descripcion: String?,
     @SerializedName("imageUrl")var caratula: String?,
     @SerializedName("directorPhone")var tel: String?
-
 ):Serializable

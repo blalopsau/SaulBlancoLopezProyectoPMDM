@@ -126,13 +126,14 @@ class EditarPeliculaActivity : AppCompatActivity() {
                         adb.setMessage("La película no pudo recuperarse correctamente")
                         adb.setPositiveButton("Aceptar") { dialog, which -> }
                         adb.show()
-                    } else if (response.code() == 401 || response.code() == 500) {
+                    }else if (response.code() == 401) {
                         val adb = AlertDialog.Builder(context)
                         adb.setIcon(R.drawable.outline_error_24)
                         adb.setTitle("Inicio de sesión caducado")
                         adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
                         adb.setPositiveButton("Aceptar") { dialog, which -> }
                         adb.show()
+                        pref.guardar("")
                     } else {
                         val adb = AlertDialog.Builder(applicationContext)
                         adb.setIcon(R.drawable.outline_check_circle_24)

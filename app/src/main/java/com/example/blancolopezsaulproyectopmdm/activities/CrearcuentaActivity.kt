@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.blancolopezsaulproyectopmdm.R
 import com.example.blancolopezsaulproyectopmdm.RetrofitCliente
+import com.example.blancolopezsaulproyectopmdm.modelo.dao.Preferences
 import com.example.blancolopezsaulproyectopmdm.modelo.entities.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +22,7 @@ import java.util.regex.Pattern
 class CrearcuentaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCrearcuentaBinding
+    private lateinit var pref: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,7 @@ class CrearcuentaActivity : AppCompatActivity() {
         setContentView(binding.root)
         val context = this
 
+        pref=Preferences(applicationContext)
         binding.btAceptar.setOnClickListener {//En el botón aceptar creamos el usuario en la api y pasamos a la pantalla de login
 
             if (comprobarDatos() == true) {//Si los datos son correctos cargamos los datos en la api
@@ -53,6 +56,8 @@ class CrearcuentaActivity : AppCompatActivity() {
                                     startActivity(intent)
                                 })
                         adb.show()
+                    }else if(response.code()==401) {
+                        pref.guardar("")
                     }
                     else {
                         val adb = AlertDialog.Builder(context)

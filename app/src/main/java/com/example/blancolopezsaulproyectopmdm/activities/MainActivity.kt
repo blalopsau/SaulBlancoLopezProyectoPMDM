@@ -29,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (pref.sacarToken()!=null){
-            val intent = Intent(this, PeliculasActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.btCrearCuenta.setOnClickListener {//Cuando se pulsa el boton crear se va a la pantalla CrearcuentaActivity
             val intent = Intent(this, CrearcuentaActivity::class.java)
             startActivity(intent)
@@ -44,8 +39,6 @@ class MainActivity : AppCompatActivity() {
             val contrasenha = binding.tietContrasenha.text.toString()
 
             if (binding.tietUsuario.text.toString().length == 0 || binding.tietContrasenha.text.toString().length == 0) {
-
-
                 val adb = AlertDialog.Builder(this)
                 adb.setIcon(R.drawable.outline_error_24)
                 adb.setTitle("Datos incorrectos")
@@ -71,6 +64,9 @@ class MainActivity : AppCompatActivity() {
                             adb.show()
                         }else if (response.code() == 401){
                             pref.guardar("")
+                            val intent = Intent(context, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
                         }
                         else {
                             val token = response.body()?.token.toString()

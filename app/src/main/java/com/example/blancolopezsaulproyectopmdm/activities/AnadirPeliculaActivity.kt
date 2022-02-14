@@ -61,7 +61,6 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                 adb.setPositiveButton("Aceptar") { dialog, which -> }
                 adb.show()
             } else {
-
                 val token = pref.sacarToken()
                 val call = RetrofitCliente.apiRetrofit.crear("Bearer" + token, pel)
 
@@ -78,7 +77,7 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                             adb.setMessage("La película no pudo crearse correctamente")
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
-                        } else if (response.code() == 401 || response.code() == 500) {
+                        } else if (response.code() == 401) {
                             val adb = AlertDialog.Builder(context)
                             adb.setIcon(R.drawable.outline_error_24)
                             adb.setTitle("Inicio de sesión caducado")

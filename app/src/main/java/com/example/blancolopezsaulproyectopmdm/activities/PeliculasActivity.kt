@@ -64,10 +64,7 @@ class PeliculasActivity : AppCompatActivity() {
                 Log.d("respuesta: onFailure", t.toString())
 }
 
-            override fun onResponse(
-                call: Call<List<Pelicula>>,
-                response: Response<List<Pelicula>>
-            ) {
+            override fun onResponse(call: Call<List<Pelicula>>,response: Response<List<Pelicula>>) {
                 binding.rvListaPeliculasInclude.layoutListaPeliculas.visibility=View.VISIBLE
                 binding.rvCargaInclude.layoutCarga.visibility=View.GONE
 
@@ -78,14 +75,13 @@ class PeliculasActivity : AppCompatActivity() {
                     adb.setMessage("La lista de películas no pudo cargarse correctamente")
                     adb.setPositiveButton("Aceptar") { dialog, which -> }
                     adb.show()
-                } else if (response.code() == 401 || response.code() == 500) {
+                } else if (response.code() == 401) {
                     val adb = AlertDialog.Builder(context)
                     adb.setIcon(R.drawable.outline_error_24)
                     adb.setTitle("Inicio de sesión caducado")
                     adb.setMessage("La sesión ha caducado, inicie desión de nuevo")
                     adb.setPositiveButton("Aceptar") { dialog, which -> }
                     adb.show()
-
                     pref.guardar("")
                 } else {
                     val listaPelicula: List<Pelicula>? = response.body()
