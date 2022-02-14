@@ -68,14 +68,7 @@ class PeliculasActivity : AppCompatActivity() {
                 binding.rvListaPeliculasInclude.layoutListaPeliculas.visibility=View.VISIBLE
                 binding.rvCargaInclude.layoutCarga.visibility=View.GONE
 
-                if (response.code() > 299 || response.code() < 200) {
-                    val adb = AlertDialog.Builder(context)
-                    adb.setIcon(R.drawable.outline_error_24)
-                    adb.setTitle("Lista de peliculas")
-                    adb.setMessage("La lista de películas no pudo cargarse correctamente")
-                    adb.setPositiveButton("Aceptar") { dialog, which -> }
-                    adb.show()
-                } else if (response.code() == 401) {
+                 if (response.code() == 401) {
                     val adb = AlertDialog.Builder(context)
                     adb.setIcon(R.drawable.outline_error_24)
                     adb.setTitle("Inicio de sesión caducado")
@@ -86,6 +79,13 @@ class PeliculasActivity : AppCompatActivity() {
                     val intent = Intent(context, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     context.startActivity(intent)
+                }else if (response.code() > 299 || response.code() < 200) {
+                    val adb = AlertDialog.Builder(context)
+                    adb.setIcon(R.drawable.outline_error_24)
+                    adb.setTitle("Lista de peliculas")
+                    adb.setMessage("La lista de películas no pudo cargarse correctamente")
+                    adb.setPositiveButton("Aceptar") { dialog, which -> }
+                    adb.show()
                 } else {
                     val listaPelicula: List<Pelicula>? = response.body()
 
