@@ -39,7 +39,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         pref = Preferences(applicationContext)
-
+        val context = this
         val id = intent.extras?.get("id") as String?
         val token = pref.sacarToken()
         val call = RetrofitCliente.apiRetrofit.getId("Bearer" + token, id)
@@ -59,6 +59,9 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                     adb.show()
                 } else if (response.code() == 401) {
                     pref.guardar("")
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    context.startActivity(intent)
                 } else {
                     val titulo = response.body()?.titulo.toString()
                     val caratula = response.body()?.caratula.toString()
@@ -145,6 +148,10 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
                             pref.guardar("")
+                            val intent = Intent(context, MainActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            context.startActivity(intent)
                         } else {
                             Toast.makeText(
                                 context,

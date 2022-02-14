@@ -58,6 +58,9 @@ class CrearcuentaActivity : AppCompatActivity() {
                         adb.show()
                     }else if(response.code()==401) {
                         pref.guardar("")
+                        val intent = Intent(context, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        context.startActivity(intent)
                     }
                     else {
                         val adb = AlertDialog.Builder(context)

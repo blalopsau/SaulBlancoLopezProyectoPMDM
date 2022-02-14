@@ -1,5 +1,6 @@
 package com.example.blancolopezsaulproyectopmdm.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -85,6 +86,9 @@ class AnadirPeliculaActivity : AppCompatActivity() {
                             adb.setPositiveButton("Aceptar") { dialog, which -> }
                             adb.show()
                             pref.guardar("")
+                            val intent = Intent(context, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            context.startActivity(intent)
                         } else {
                             Toast.makeText(
                                 applicationContext,
